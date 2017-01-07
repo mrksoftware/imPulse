@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 class Layout extends React.Component {
     render(){
-        console.log('hello');
+        console.log('hello world');
         return (
             <h1>imPulse</h1>
         );
@@ -11,5 +11,4 @@ class Layout extends React.Component {
 }
 
 const app = document.getElementById('app');
-
-ReactDOM.render(<Layout />, app);
+ReactDOM.render(<Layout/>, app);
