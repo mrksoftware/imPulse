@@ -15,6 +15,7 @@ export function downloadErrorList(url) {
     });
     const errorAPI = url + "/api/errors"; 
     axios(errorAPI).then((response) => {
+        console.log("Received: ", response);
        dispatcher.dispatch({
             type: "DOWNLOADED_ERROR_LIST",
             response: response
