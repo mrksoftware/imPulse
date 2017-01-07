@@ -41,7 +41,7 @@ export default class ErrorList extends React.Component {
         console.log(this.state)
         var errorList = [];
         if(this.state.errorList!=undefined){
-            console.log("loading from state");
+            console.log("loading from state", this.state.errorList);
             errorList = this.state.errorList.map((errorItem, i) =>
                 <h4 key={i}>{errorItem.toString()}</h4>
             );
