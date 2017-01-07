@@ -1,8 +1,9 @@
 import React from "react";
 
 import PulseAddressBar from "../components/PulseAddressBar";
+import ErrorList from "../components/ErrorList";
 
-import LayoutStore from "../stores/LayoutStore";
+import LayoutStore from "../stores/PulseStore";
 
 export default class Layout extends React.Component {
   constructor() {
@@ -18,6 +19,7 @@ export default class Layout extends React.Component {
     return (
       <div>
         <PulseAddressBar pulseAddressValue={pulseAddressValue.url} />
+        <ErrorList />
       </div>
     );
   }

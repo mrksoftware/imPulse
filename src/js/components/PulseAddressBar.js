@@ -1,5 +1,8 @@
 import React from "react";
 
+import * as PulseActions from "../actions/PulseActions";
+import PulseStore from "../stores/PulseStore";
+
 export default class PulseAddressBar extends React.Component {
   constructor() {
     super();
@@ -17,8 +20,8 @@ export default class PulseAddressBar extends React.Component {
     this.setState({address: event.target.value});
   }
 
-  onButtonClick(event){
-    console.log(event);
+  downloadErrorList(event){
+    PulseActions.downloadErrorList(this.state.address);
   }
 
   render() {
@@ -28,7 +31,7 @@ export default class PulseAddressBar extends React.Component {
         <div class="input-group">
             <input type="text" class="form-control" id="address" value={this.state.address} onChange={this.changeAddress.bind(this)} />
             <span class="input-group-btn">
-              <button id="btnSubmit" class="btn btn-primary" type="button" onClick={this.onButtonClick.bind(this)}>Go!</button>
+              <button id="btnSubmit" class="btn btn-primary" type="button" onClick={this.downloadErrorList.bind(this)}>Go!</button>
             </span>
         </div>
       </div>
