@@ -21,7 +21,7 @@ module.exports = {
     ]
   },
   output: {
-    path: __dirname,
+    path: path.resolve(__dirname, "src/"),
     filename: "client.min.js"
   },
   plugins: debug ? [] : [

@@ -31,7 +31,7 @@
   ```
 * add this line to the `script` property inside package.json file
   ```javascript
-  "dev": "webpack-dev-server --content-base --inline --hot"
+  "dev": "webpack-dev-server --inline --hot"
   ```
 * add this code to the `index.html` file, all the react code will be rendered inside the `div` (id=app) tag. The scripts are inside the minified file `client.min.js` (webpack will take care of the creation)
   ```html
@@ -47,7 +47,7 @@
 
       <body>
           <div id="app"></div>
-          <script src="src/client.min.js"/>
+          <script src="src/client.min.js"></script>
       </body>
   </html>
   ```
