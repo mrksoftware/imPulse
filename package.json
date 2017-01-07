@@ -2,10 +2,38 @@
   "name": "impulse",
   "version": "1.0.0",
   "description": "impulse",
-  "main": "index.html",
+  "main": "webpack.config.js",
   "scripts": {
+    "dev": "webpack-dev-server --inline --hot",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Mirko Bellabarba",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.15.3",
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-plugin-react-html-attrs": "^2.0.0",
+    "babel-plugin-transform-class-properties": "^6.3.13",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
+    "react": "^15.4.0",
+    "react-dom": "^15.4.0",
+    "react-ga": "^2.1.2",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.16.2",
+    "moment":"^2.17.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrksoftware/imPulse"
+  },
+  "bugs": {
+    "url": "https://github.com/mrksoftware/imPulse/issues"
+  },
+  "homepage": "https://github.com/mrksoftware/imPulse#readme"
 }
