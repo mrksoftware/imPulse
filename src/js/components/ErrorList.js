@@ -76,6 +76,7 @@ export default class ErrorList extends React.Component {
                 PulseStore.getErrorList().map(function(body){
                     text = text + body;
                 });
+                console.log(text);
                 var url = this.maketextFile(text);
 
                 this.setState({
