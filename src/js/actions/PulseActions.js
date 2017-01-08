@@ -16,7 +16,7 @@ export function downloadErrorGroupsList(url) {
     //http://localhost:33333/api/recoverability/groups
     const errorAPI = url + "/api/recoverability/groups"; 
     axios(errorAPI).then((response) => {
-        console.log("Received: ", response);
+        console.log("Received: ", errorAPI, response);
        dispatcher.dispatch({
             type: "DOWNLOADED_ERROR_LIST",
             response: response,

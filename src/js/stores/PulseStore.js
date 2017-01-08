@@ -33,6 +33,7 @@ class PulseStore extends EventEmitter {
                 this.emit("fetchingErrorList");                
             }
             case "DOWNLOADED_ERROR_LIST": {
+                console.log("AddresValue in PulseStore: ", this.pulseAddressValue);
                 this.errorList = action.response;
                 this.responseType = action.responseType;
                 this.emit("errorListDownloaded");
