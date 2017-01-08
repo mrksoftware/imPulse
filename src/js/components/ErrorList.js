@@ -44,7 +44,9 @@ export default class ErrorList extends React.Component {
             console.log("loading from state", this.state.errorList);
             if(this.state.errorList.hasOwnProperty('data')){
                 errorList = this.state.errorList.data.map((errorItem, i) =>
-                    <h4 key={i}>{errorItem.toString()}</h4>
+                    <div key={errorItem.id}>
+                        <h4 id="">{errorItem.title}</h4>
+                    </div>
                 );
             }
         }
