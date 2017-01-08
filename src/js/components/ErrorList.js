@@ -21,7 +21,7 @@ export default class ErrorList extends React.Component {
     }
 
     printButtonClick(event) {
-        console.log("printButtonClick", this.errorList);
+        console.log("printButtonClick", this.state.errorList);
     }
 
     componentWillMount() {
@@ -72,7 +72,7 @@ export default class ErrorList extends React.Component {
                             <span id="description">{errorItem.exception.message}</span>
                         </div>
                     );
-                    errorList.unshift(<button onClick={this.printButtonClick.bind(this)} class="btn btn-danger">Print this group</button>);
+                    errorList.unshift(<button onClick={this.printButtonClick.bind(this)} class="btn btn-danger" key={this.state.selectedGroupId}>Print this group</button>);
                 }
             }
         }
