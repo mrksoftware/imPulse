@@ -67,20 +67,23 @@ export default class ErrorList extends React.Component {
         });
 
         PulseStore.on("messageBodyListDownloaded", () => {
-            console.log("messageBodyListDownloaded catched")
-            console.log("Message Body list: ", PulseStore.getErrorList());
+            var errorList = PulseStore.getErrorList();
+            if(errorList !== undefined) {
+                console.log("messageBodyListDownloaded catched")
+                console.log("Message Body list: ", PulseStore.getErrorList());
 
-            var text = "";
-            PulseStore.getErrorList().map(function(body){
-                text = text + body;
-            });
-            var url = maketextFile(text)
+                var text = "";
+                PulseStore.getErrorList().map(function(body){
+                    text = text + body;
+                });
+                var url = maketextFile(text)
 
-            this.setState({
-                address: PulseStore.getPulseAddress().url,
-                errorList: url,
-                responseType: "downloadLink"
-            });
+                this.setState({
+                    address: PulseStore.getPulseAddress().url,
+                    errorList: url,
+                    responseType: "downloadLink"
+                });
+            }
         });
     }
 
