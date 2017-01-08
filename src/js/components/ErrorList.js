@@ -21,7 +21,7 @@ export default class ErrorList extends React.Component {
     }
 
     printButtonClick(event) {
-        console.log("printButtonClick", this.responseType);
+        console.log("printButtonClick", this.errorList);
     }
 
     componentWillMount() {
