@@ -7,6 +7,7 @@ class PulseStore extends EventEmitter {
         super()
         this.pulseAddressValue = {url: "http://localhost:33334"};
         this.errorList = null;
+        this.responseType = null;
     }
 
     getPulseAddress() {
@@ -15,6 +16,10 @@ class PulseStore extends EventEmitter {
 
     getErrorList() {
         return this.errorList;
+    }
+
+    getRepsonseType() {
+        return this.responseType;
     }
 
     handleActions(action) {
@@ -31,6 +36,7 @@ class PulseStore extends EventEmitter {
             case "DOWNLOADED_ERROR_LIST": {
                 this.errorList = action.response;
                 this.pulseAddressValue =  {url: action.status};
+                this.responseType = action.responseType;
                 this.emit("errorListDownloaded");
             }
         }

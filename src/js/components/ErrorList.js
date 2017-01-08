@@ -1,16 +1,23 @@
 import React from "react";
 
+import * as PulseActions from "../actions/PulseActions";
 import PulseStore from "../stores/PulseStore";
 
 
 export default class ErrorList extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-        address: "Test",
-        errorList: [{}]
+    constructor() {
+        super();
+        this.state = {
+            address: "Test",
+            errorList: null,
+            responseType: null
+        }
     }
-  }
+
+    detailButtonClick(event) {
+        console.log("detailButtonCLick: ", event);
+        PulseActions.downloadErrorList(this.state.address, event.id);
+    }
 
     componentWillMount() {
         PulseStore.on("pulseAddressUpdated", () => {
@@ -31,7 +38,8 @@ export default class ErrorList extends React.Component {
             console.log("errorListDownloaded catched")
             this.setState({
                 address: PulseStore.getPulseAddress().url,
-                errorList: PulseStore.getErrorList()
+                errorList: PulseStore.getErrorList(),
+                responseType: PulseStore.getRepsonseType()
             });
         })
     }
@@ -43,11 +51,21 @@ export default class ErrorList extends React.Component {
         if(this.state.errorList!=undefined){
             console.log("loading from state", this.state.errorList);
             if(this.state.errorList.hasOwnProperty('data')){
-                errorList = this.state.errorList.data.map((errorItem, i) =>
-                    <div key={errorItem.id}>
-                        <h4 id="">{errorItem.title}</h4>
-                    </div>
-                );
+                if(this.state.responseType === "groupList") {
+                    errorList = this.state.errorList.data.map((errorItem, i) =>
+                        <div key={errorItem.id}>
+                            <h4 id="title">{errorItem.title}</h4>
+                            <button class="btn btn-success" id={errorItem.id} onClick={this.detailButtonClick.bind(this)}>Details</button>
+                        </div>
+                    );
+                } else if (this.state.responseType === "messageList") {
+                    errorList = this.state.errorList.data.map((errorItem, i) =>
+                        <div key={errorItem.message_id}>
+                            <h4 id="title">{errorItem.message_type}</h4>
+                            <span id="description">{errorItem.exceptio.message}</span>
+                        </div>
+                    );
+                }
             }
         }
 

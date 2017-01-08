@@ -19,7 +19,27 @@ export function downloadErrorGroupsList(url) {
         console.log("Received: ", response);
        dispatcher.dispatch({
             type: "DOWNLOADED_ERROR_LIST",
-            response: response
+            response: response,
+            responseType: "groupList"
+        }); 
+    }).catch((err) => {
+        //TODO
+    });
+}
+
+export function downloadErrorList(url, groupId) {
+    dispatcher.dispatch({
+        type: "FETCHING_ERROR_LIST",
+        url: url
+    });
+    //http://localhost:33333/api/recoverability/groups
+    const errorAPI = url + "/api/recoverability/groups/" + groupId; 
+    axios(errorAPI).then((response) => {
+        console.log("Received: ", response);
+       dispatcher.dispatch({
+            type: "DOWNLOADED_ERROR_LIST",
+            response: response,
+            responseType: "messageList"
         }); 
     }).catch((err) => {
         //TODO
