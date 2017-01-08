@@ -15,8 +15,8 @@ export default class ErrorList extends React.Component {
     }
 
     detailButtonClick(event) {
-        console.log("detailButtonCLick: ", event);
-        PulseActions.downloadErrorList(this.state.address, event.id);
+        console.log("detailButtonCLick: ", event.target);
+        PulseActions.downloadErrorList(this.state.address, event.target.attributes.id);
     }
 
     componentWillMount() {
