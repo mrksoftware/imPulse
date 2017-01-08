@@ -74,7 +74,10 @@ export default class ErrorList extends React.Component {
         <div>
             <label for="usr">{this.state.address}</label>
             <div>
-                {errorList}
+                <button onClick={this.printButtonClick.bind(this)} class="btn btn-danger">Print this group</button>
+                <div class="errorList">
+                    {errorList}
+                </div>
             </div>
         </div>
         );
