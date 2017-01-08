@@ -23,7 +23,7 @@ export default class ErrorList extends React.Component {
     printButtonClick(event) {
         console.log("printButtonClick", this.state.errorList);
         var messageIds = [];
-        this.state.errorList.map(function(errorItem){
+        this.state.errorList.data.map(function(errorItem){
             messageIds.push(errorItem.message_id);
         });
         PulseActions.downloadMessageBodyList(this.state.address,messageIds);
