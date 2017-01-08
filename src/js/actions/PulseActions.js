@@ -47,6 +47,30 @@ export function downloadErrorList(url, groupId) {
     });
 }
 
+//http://localhost:33333/api/messages/7837a55c-0dc5-4a0e-b913-a6d300a7cbbc/body
+export function downloadMessageBodyList(url, messageIds) {
+    dispatcher.dispatch({
+        type: "FETCHING_ERROR_LIST",
+        state: "Loading..."
+    });
+    var messageBodyList = [];
+    messageIds.map(function(messageId){
+        const errorAPI = url + "/api/messages/" + messageId + "/body"; 
+        axios(errorAPI).then((response) => {
+            console.log("Received: ", response);
+            messageBodyList.push(response);
+        }).catch((err) => {
+            //TODO
+        });
+    });
+    dispatcher.dispatch({
+        type: "DOWNLOADED_MESSAGE_BODY_LIST",
+        response: messageBodyList,
+        responseType: "messageBodyList"
+    });
+    
+}
+
 export function fakeDownloadErrorList(url) {
     dispatcher.dispatch({
         type: "FETCHING_ERROR_LIST",

@@ -22,6 +22,11 @@ export default class ErrorList extends React.Component {
 
     printButtonClick(event) {
         console.log("printButtonClick", this.state.errorList);
+        var messageIds = [];
+        this.state.errorList.map(function(errorItem){
+            messageIds.push(errorItem.message_id);
+        });
+        PulseActions.downloadMessageBodyList(this.state.address,messageIds);
     }
 
     componentWillMount() {
@@ -44,7 +49,17 @@ export default class ErrorList extends React.Component {
                 responseType: PulseStore.getRepsonseType(),
                 selectedGroupId: PulseStore.getSelectedGroupId()
             });
-        })
+        });
+
+        PulseStore.on("messageBodyListDownloaded", () => {
+            console.log("messageBodyListDownloaded catched")
+            console.log("Message Body list: ", PulseStore.getErrorList());
+            this.setState({
+                address: PulseStore.getPulseAddress().url,
+                errorList: PulseStore.getErrorList(),
+                responseType: PulseStore.getRepsonseType()
+            });
+        });
     }
 
     componentDidMount() {
@@ -73,6 +88,8 @@ export default class ErrorList extends React.Component {
                         </div>
                     );
                     errorList.unshift(<button onClick={this.printButtonClick.bind(this)} class="btn btn-danger" key={this.state.selectedGroupId}>Print this group</button>);
+                } else if (this.state.responseType === "messageBodyList"){
+                    errorList.push(<h4>Done</h4>);
                 }
             }
         }

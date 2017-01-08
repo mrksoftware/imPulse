@@ -44,6 +44,12 @@ class PulseStore extends EventEmitter {
                 this.selectedGroupId = action.selectedGroupId;
                 this.emit("errorListDownloaded");
             }
+            case "DOWNLOADED_MESSAGE_BODY_LIST": {
+                console.log(this.action);
+                this.errorList = action.response;
+                this.responseType = action.responseType;
+                this.emit("messageBodyListDownloaded");
+            }
         }
     }
 }
