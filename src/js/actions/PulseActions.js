@@ -8,18 +8,21 @@ export function updatePulseAddress(url) {
     });
 }
 
-export function downloadErrorList(url) {
+export function downloadErrorGroupsList(url) {
     dispatcher.dispatch({
         type: "FETCHING_ERROR_LIST",
         url: url
     });
-    const errorAPI = url + "/api/errors"; 
+    //http://localhost:33333/api/recoverability/groups
+    const errorAPI = url + "/api/recoverability/groups"; 
     axios(errorAPI).then((response) => {
         console.log("Received: ", response);
        dispatcher.dispatch({
             type: "DOWNLOADED_ERROR_LIST",
             response: response
         }); 
+    }).catch((err) => {
+        //TODO
     });
 }
 
