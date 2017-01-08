@@ -34,7 +34,6 @@ export default class ErrorList extends React.Component {
         PulseStore.on("errorListDownloaded", () => {
             console.log("errorListDownloaded catched")
             this.setState({
-                address: PulseStore.getPulseAddress().url,
                 errorList: PulseStore.getErrorList(),
                 responseType: PulseStore.getRepsonseType()
             });

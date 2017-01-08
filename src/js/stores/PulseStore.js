@@ -30,12 +30,10 @@ class PulseStore extends EventEmitter {
                 this.emit("pulseAddressUpdated");
             }
             case "FETCHING_ERROR_LIST": {
-                this.pulseAddressValue = {url: action.url};
                 this.emit("fetchingErrorList");                
             }
             case "DOWNLOADED_ERROR_LIST": {
                 this.errorList = action.response;
-                this.pulseAddressValue =  {url: action.status};
                 this.responseType = action.responseType;
                 this.emit("errorListDownloaded");
             }
