@@ -33,7 +33,7 @@ export function downloadErrorList(url, groupId) {
         state: "Loading..."
     });
     //http://localhost:33333/api/recoverability/groups
-    const errorAPI = url + "/api/recoverability/groups/" + groupId; 
+    const errorAPI = url + "/api/recoverability/groups/" + groupId + "/errors"; 
     axios(errorAPI).then((response) => {
         console.log("Received: ", response);
        dispatcher.dispatch({
