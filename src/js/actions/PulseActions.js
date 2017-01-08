@@ -39,7 +39,8 @@ export function downloadErrorList(url, groupId) {
        dispatcher.dispatch({
             type: "DOWNLOADED_ERROR_LIST",
             response: response,
-            responseType: "messageList"
+            responseType: "messageList",
+            selectedGroupId: groupId
         }); 
     }).catch((err) => {
         //TODO

@@ -8,6 +8,7 @@ class PulseStore extends EventEmitter {
         this.pulseAddressValue = {url: "http://localhost:33334"};
         this.errorList = null;
         this.responseType = null;
+        this.selectedGroupId = null;
     }
 
     getPulseAddress() {
@@ -20,6 +21,10 @@ class PulseStore extends EventEmitter {
 
     getRepsonseType() {
         return this.responseType;
+    }
+
+    getSelectedGroupId() {
+        return this.selectedGroupId;
     }
 
     handleActions(action) {
@@ -36,6 +41,7 @@ class PulseStore extends EventEmitter {
                 console.log("AddresValue in PulseStore: ", this.pulseAddressValue);
                 this.errorList = action.response;
                 this.responseType = action.responseType;
+                this.selectedGroupId = action.selectedGroupId;
                 this.emit("errorListDownloaded");
             }
         }

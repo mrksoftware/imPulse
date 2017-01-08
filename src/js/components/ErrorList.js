@@ -8,15 +8,20 @@ export default class ErrorList extends React.Component {
     constructor() {
         super();
         this.state = {
-            address: "Test",
+            address: null,
             errorList: null,
-            responseType: null
+            responseType: null,
+            selectedGroupId: null
         }
     }
 
     detailButtonClick(event) {
         console.log("detailButtonCLick: ", this.state.address, event.target.attributes[1].value);
         PulseActions.downloadErrorList(this.state.address, event.target.attributes[1].value);
+    }
+
+    printButtonClick(event) {
+        console.log("printButtonClick", this.responseType);
     }
 
     componentWillMount() {
@@ -36,7 +41,8 @@ export default class ErrorList extends React.Component {
             this.setState({
                 address: PulseStore.getPulseAddress().url,
                 errorList: PulseStore.getErrorList(),
-                responseType: PulseStore.getRepsonseType()
+                responseType: PulseStore.getRepsonseType(),
+                selectedGroupId: PulseStore.getSelectedGroupId()
             });
         })
     }
@@ -66,6 +72,7 @@ export default class ErrorList extends React.Component {
                             <span id="description">{errorItem.exception.message}</span>
                         </div>
                     );
+                    errorList.unshift(<button onClick={this.printButtonClick.bind(this)} class="btn btn-danger">Print this group</button>);
                 }
             }
         }
@@ -74,7 +81,6 @@ export default class ErrorList extends React.Component {
         <div>
             <label for="usr">{this.state.address}</label>
             <div>
-                <button onClick={this.printButtonClick.bind(this)} class="btn btn-danger">Print this group</button>
                 <div class="errorList">
                     {errorList}
                 </div>
