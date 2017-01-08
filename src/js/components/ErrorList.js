@@ -42,7 +42,7 @@ export default class ErrorList extends React.Component {
 
         // returns a URL you can use as a href
         return textFile;
-    };
+    }
 
     componentWillMount() {
         PulseStore.on("pulseAddressUpdated", () => {
