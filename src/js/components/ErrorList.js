@@ -29,6 +29,21 @@ export default class ErrorList extends React.Component {
         PulseActions.downloadMessageBodyList(this.state.address,messageIds);
     }
 
+    makeTextFile(text) {
+        var data = new Blob([text], {type: 'text/plain'});
+
+        // If we are replacing a previously generated file we need to
+        // manually revoke the object URL to avoid memory leaks.
+        if (textFile !== null) {
+            window.URL.revokeObjectURL(textFile);
+        }
+
+        textFile = window.URL.createObjectURL(data);
+
+        // returns a URL you can use as a href
+        return textFile;
+    };
+
     componentWillMount() {
         PulseStore.on("pulseAddressUpdated", () => {
             console.log("pulseAddressUpdated catched")
@@ -54,10 +69,17 @@ export default class ErrorList extends React.Component {
         PulseStore.on("messageBodyListDownloaded", () => {
             console.log("messageBodyListDownloaded catched")
             console.log("Message Body list: ", PulseStore.getErrorList());
+
+            var text = "";
+            PulseStore.getErrorList().map(function(body){
+                text = text + body;
+            });
+            var url = maketextFile(text)
+
             this.setState({
                 address: PulseStore.getPulseAddress().url,
-                errorList: PulseStore.getErrorList(),
-                responseType: PulseStore.getRepsonseType()
+                errorList: url,
+                responseType: "downloadLink"
             });
         });
     }
@@ -90,6 +112,9 @@ export default class ErrorList extends React.Component {
                     errorList.unshift(<button onClick={this.printButtonClick.bind(this)} class="btn btn-danger" key={this.state.selectedGroupId}>Print this group</button>);
                 } else if (this.state.responseType === "messageBodyList"){
                     errorList.push(<h4>Done</h4>);
+                } else if (this.state.responseType === "downloadLink") {
+                    console.log("Download", this.state.errorList);
+                    errorList.push(<a href={this.state.errorList}>Download</a>);
                 }
             }
         }
