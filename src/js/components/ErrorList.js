@@ -15,7 +15,7 @@ export default class ErrorList extends React.Component {
     }
 
     detailButtonClick(event) {
-        console.log("detailButtonCLick: ", event.target.attributes[1].value);
+        console.log("detailButtonCLick: ", this.state.address, event.target.attributes[1].value);
         PulseActions.downloadErrorList(this.state.address, event.target.attributes[1].value);
     }
 
@@ -46,7 +46,7 @@ export default class ErrorList extends React.Component {
 
 
     render() {
-        console.log(this.state)
+        console.log("render with state: ", this.state)
         var errorList = [];
         if(this.state.errorList!=undefined){
             console.log("loading from state", this.state.errorList);
@@ -62,7 +62,7 @@ export default class ErrorList extends React.Component {
                     errorList = this.state.errorList.data.map((errorItem, i) =>
                         <div key={errorItem.message_id}>
                             <h4 id="title">{errorItem.message_type}</h4>
-                            <span id="description">{errorItem.exceptio.message}</span>
+                            <span id="description">{errorItem.exception.message}</span>
                         </div>
                     );
                 }
