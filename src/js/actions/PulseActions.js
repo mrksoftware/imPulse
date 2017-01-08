@@ -11,7 +11,7 @@ export function updatePulseAddress(url) {
 export function downloadErrorGroupsList(url) {
     dispatcher.dispatch({
         type: "FETCHING_ERROR_LIST",
-        url: url
+        state: "Loading..."
     });
     //http://localhost:33333/api/recoverability/groups
     const errorAPI = url + "/api/recoverability/groups"; 
@@ -30,7 +30,7 @@ export function downloadErrorGroupsList(url) {
 export function downloadErrorList(url, groupId) {
     dispatcher.dispatch({
         type: "FETCHING_ERROR_LIST",
-        url: url
+        state: "Loading..."
     });
     //http://localhost:33333/api/recoverability/groups
     const errorAPI = url + "/api/recoverability/groups/" + groupId; 
@@ -49,7 +49,7 @@ export function downloadErrorList(url, groupId) {
 export function fakeDownloadErrorList(url) {
     dispatcher.dispatch({
         type: "FETCHING_ERROR_LIST",
-        url: "Loading..."
+        state: "Loading..."
     });
     setTimeout(()=>{
         dispatcher.dispatch({
