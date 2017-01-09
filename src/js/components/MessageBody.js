@@ -14,9 +14,9 @@ export default class MessageBody extends React.Component {
         }
     }
 
-    downloadMessageBodyAsync(messageId) {
+    downloadMessageBodyAsync(url, messageId) {
     	console.log("Fired action: downloadMessageBodyAsync", messageId);
-    	MessageBodyActions.downloadMessageBodyAsync(messageId);
+    	MessageBodyActions.downloadMessageBodyAsync(url, messageId);
     }
 
     componentDidMount() {
