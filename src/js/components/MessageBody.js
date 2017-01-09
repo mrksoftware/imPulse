@@ -10,7 +10,9 @@ export default class MessageBody extends React.Component {
         this.state = {
         	url: null,
             messageId: -1,
-            messageBody: "..."
+            messageBody: "...",
+			errorType: "",
+			exceptionMessage: ""
         }
     }
 
@@ -21,8 +23,12 @@ export default class MessageBody extends React.Component {
 
     componentDidMount() {
     	console.log("ComponentDidMount", this.props);
-    	this.setState({messageId: this.props.messageId});
-    	this.setState({url: this.props.url});
+    	this.setState({
+			messageId: this.props.messageId,
+			url: this.props.url,
+			errorType: this.props.errorType,
+			exceptionMessage: this.exceptionMessage
+		});
 		console.log("Firing action: downloadMessageBodyAsync", this.props.messageId);
     	this.downloadMessageBodyAsync(this.props.url, this.props.messageId);
     }
@@ -37,11 +43,25 @@ export default class MessageBody extends React.Component {
 	    });
 	}
 
+	getFormattedMessage(messageBody) {
+		var result = "";
+		result = result + this.state.errorType + "|"; //Add errorType
+		result = result + this.state.exceptionMessage + "|"; //add exceptionMessage
+		result = result + JSON.stringify(messageBody) + "|"; //add messageBody
+		if(messageBody.hasOwnProperty("idOrdineProduzione"))
+			result = result + messageBody.idOrdineProduzione + "|"; //add idOrdineProduzione
+		if(messageBody.hasOwnProperty("cv"))
+			result = result + messageBody.cv + "|"; //add cv
+		
+		return result;
+	}
+
     render() {
 		console.log("rendering: ", this.state.messageBody);
+		var result = this.getFormattedMessage(this.state.messageBody.data);
         return(
         	<div>
-        		<span key={this.state.messageId}>{JSON.stringify(this.state.messageBody.data)}</span>
+				<span key={this.state.messageId}>{result}</span>
         	</div>
         );
     }

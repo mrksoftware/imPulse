@@ -95,9 +95,10 @@ export default class ErrorList extends React.Component {
                 } else if (this.state.responseType === "messageList") {
                     errorList = this.state.errorList.data.map((errorItem, i) =>
                         <div key={errorItem.message_id}>
-                            <h4 id="title">{errorItem.message_type}</h4>
-                            <span id="description">{errorItem.exception.message}</span>
-                            <MessageBody messageId={errorItem.message_id} url={this.state.address} ></MessageBody>
+                            <MessageBody    errorType={errorItem.message_type} 
+                                            exceptionMessage={errorItem.exception.message}
+                                            messageId={errorItem.message_id} 
+                                            url={this.state.address} ></MessageBody>
                             <hr></hr>                            
                         </div>
                     );
