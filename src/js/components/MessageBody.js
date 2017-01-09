@@ -9,8 +9,8 @@ export default class MessageBody extends React.Component {
         super();
         this.state = {
         	url: null,
-            messageId: null,
-            messageBody: null
+            messageId: -1,
+            messageBody: "..."
         }
     }
 
@@ -23,6 +23,7 @@ export default class MessageBody extends React.Component {
     	console.log("ComponentDidMount", this.props);
     	this.setState({messageId: this.props.messageId});
     	this.setState({url: this.props.url});
+		console.log("Firing action: downloadMessageBodyAsync", this.props.messageId);
     	downloadMessageBodyAsync(this.props.messageId);
     }
 
