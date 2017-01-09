@@ -20,8 +20,8 @@ class MessageBodyStore extends EventEmitter {
 	}
 
 	getFilterValue(){
-		if(filterValue && filterValue !== "")
-			return filterValue.split(",");
+		if(this.filterValue && this.filterValue !== "")
+			return this.filterValue.split(",");
 		else
 			return [];
 	}

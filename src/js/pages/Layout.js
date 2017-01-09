@@ -20,7 +20,7 @@ export default class Layout extends React.Component {
     return (
       <div>
         <PulseAddressBar pulseAddressValue={pulseAddressValue.url} />
-        <PrintFilterBar filterValue="IdOrdineProduzione, Cv" />
+        <PrintFilterBar filterValue="IdOrdineProduzione,Cv" />
         <ErrorList />
       </div>
     );
