@@ -97,11 +97,13 @@ export default class ErrorList extends React.Component {
                         <div key={errorItem.message_id}>
                             <h4 id="title">{errorItem.message_type}</h4>
                             <span id="description">{errorItem.exception.message}</span>
-                            <MessageBody messageId={errorItem.message_id} url={this.state.address} />
+                            <MessageBody messageId={errorItem.message_id} url={this.state.address} ></MessageBody>
                         </div>
                     );
-                    errorList.unshift(<button onClick={this.printButtonClick.bind(this)} class="btn btn-danger" key={this.state.selectedGroupId}>Print this group</button>);
-                } else if (this.state.responseType === "messageBodyList"){
+                    //errorList.unshift(<button onClick={this.printButtonClick.bind(this)} class="btn btn-danger" key={this.state.selectedGroupId}>Print this group</button>);
+                } 
+
+                else if (this.state.responseType === "messageBodyList"){
                     errorList.push(<h4>Done</h4>);
                 } else if (this.state.responseType === "downloadLink") {
                     console.log("Download", this.state.errorList);
