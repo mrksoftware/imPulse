@@ -48,7 +48,7 @@ export default class MessageBody extends React.Component {
 	    });
 
 		MessageBodyStore.on("applyFilterValue", () => {
-	        console.log("filterErrorList catched", MessageBodyStore.getFilterValue())
+	        console.log("filterValueUpdated catched", MessageBodyStore.getFilterValue())
 	        this.setState({
 				filterValue: MessageBodyStore.getFilterValue()
 			});
