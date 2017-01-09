@@ -41,4 +41,4 @@ dispatcher.register(messageBodyStore.handleActions.bind(messageBodyStore));
 //Expose dispatcher globally (for test purpose)
 //window.dispatcher = dispatcher;
 
-export default messageBodyStoremessageBodyStore;
+export default messageBodyStore;
