@@ -1,5 +1,7 @@
 import React from "react";
 
+import MessageBody from "./MessageBody"
+
 import * as PulseActions from "../actions/PulseActions";
 import PulseStore from "../stores/PulseStore";
 
