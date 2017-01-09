@@ -9,7 +9,7 @@ export function downloadMessageBodyAsync(url, messageId) {
 	   dispatcher.dispatch({
 	        type: "DOWNLOAD_MESSAGE_BODY_ASYNC",
 	        messageId: messageId,
-	        messageBody: response.data.toString()
+	        messageBody: response.data
 	    }); 
 	}).catch((err) => {
 	    //TODO
