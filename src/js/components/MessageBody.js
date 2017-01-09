@@ -56,12 +56,11 @@ export default class MessageBody extends React.Component {
 	}
 
 	getFormattedMessage(messageBody, filterValue) {
-		console.log("Format message: ", this.state, messageBody, filterValue);
 		var result = "";
 		result = result + this.state.errorType + "|"; //Add errorType
 		result = result + this.state.exceptionMessage + "|"; //add exceptionMessage
 		result = result + JSON.stringify(messageBody) + "|"; //add messageBody
-		console.log("If result: ", filterValue.lenght > 0);
+		console.log("If result: ", filterValue, filterValue.lenght, filterValue.lenght > 0);
 		if(filterValue.lenght > 0){
 			console.log("Apply filter: ", filterValue);
 			filterValue.map(function(filter){

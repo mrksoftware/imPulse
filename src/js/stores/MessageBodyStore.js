@@ -23,7 +23,7 @@ class MessageBodyStore extends EventEmitter {
 		if(this.filterValue && this.filterValue !== "")
 			return this.filterValue.split(",");
 		else
-			return [];
+			return ["IdSequenza"];
 	}
 
 	handleActions(action) {
