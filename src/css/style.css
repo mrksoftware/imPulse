@@ -1,0 +1,18 @@
+body {
+  background-color: #ecf0f1;
+  margin-left: 12px;
+  margin-right: 12px; 
+}
+
+hr {
+  background-color: #7f8c8d;
+  height: 1px;
+}
+
+.btn {
+  min-width: 80px;
+}
+
+.input-group-addon {
+  min-width: 50px;
+}
