@@ -10,7 +10,7 @@ export default class MessageBody extends React.Component {
         this.state = {
         	url: null,
             messageId: -1,
-            messageBody: "...",
+            messageBody: {data: "..."},
 			errorType: "",
 			exceptionMessage: ""
         }
