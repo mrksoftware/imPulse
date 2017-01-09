@@ -15,3 +15,16 @@ export function downloadMessageBodyAsync(url, messageId) {
 	    //TODO
 	});
 }
+
+export function updateFilterValue(filterValue) {
+	dispatcher.dispatch({
+		type: "UPDATE_FILTER_VALUE",
+		filterValue: filterValue
+	}); 
+}
+
+export function applyFilterValue(url, messageId) {
+	dispatcher.dispatch({
+		type: "APPLY_FILTER_VALUE"
+	}); 
+}

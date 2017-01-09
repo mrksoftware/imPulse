@@ -12,7 +12,8 @@ export default class MessageBody extends React.Component {
             messageId: -1,
             messageBody: {data: "..."},
 			errorType: "",
-			exceptionMessage: ""
+			exceptionMessage: "",
+			filterValue: []
         }
     }
 
@@ -27,7 +28,7 @@ export default class MessageBody extends React.Component {
 			messageId: this.props.messageId,
 			url: this.props.url,
 			errorType: this.props.errorType,
-			exceptionMessage: this.exceptionMessage
+			exceptionMessage: this.props.exceptionMessage
 		});
 		console.log("Firing action: downloadMessageBodyAsync", this.props.messageId);
     	this.downloadMessageBodyAsync(this.props.url, this.props.messageId);
@@ -41,6 +42,17 @@ export default class MessageBody extends React.Component {
 	            messageId: MessageBodyStore.getMessageId()
 	        });
 	    });
+
+		MessageBodyStore.on("filterValueUpdated", () => {
+	        console.log("filterErrorList catched")
+	    });
+
+		MessageBodyStore.on("applyFilterValue", () => {
+	        console.log("filterErrorList catched")
+	        this.setState({
+				filterValue: MessageBodyStore.getFilterValue()
+			});
+	    });
 	}
 
 	getFormattedMessage(messageBody) {
@@ -48,10 +60,12 @@ export default class MessageBody extends React.Component {
 		result = result + this.state.errorType + "|"; //Add errorType
 		result = result + this.state.exceptionMessage + "|"; //add exceptionMessage
 		result = result + JSON.stringify(messageBody) + "|"; //add messageBody
-		if(messageBody.hasOwnProperty("IdOrdineProduzione"))
-			result = result + messageBody.IdOrdineProduzione + "|"; //add idOrdineProduzione
-		if(messageBody.hasOwnProperty("Cv"))
-			result = result + messageBody.Cv + "|"; //add cv
+		if(this.state.filterValue && this.state.filterValue.lenght > 0){
+			this.state.filterValue.map(function(filter){
+				if(messageBody.hasOwnProperty(filter))
+					result = result + messageBody[filter] + "|"; //add idOrdineProduzione
+			});
+		}
 		
 		return result;
 	}

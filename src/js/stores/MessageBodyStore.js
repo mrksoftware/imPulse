@@ -8,6 +8,7 @@ class MessageBodyStore extends EventEmitter {
 		super();
 		this.messageId = -1;
 		this.messageBody = "Loading";
+		this.filterValue = "";
 	}
 
 	getMessageId() {
@@ -18,6 +19,13 @@ class MessageBodyStore extends EventEmitter {
 		return this.messageBody;
 	}
 
+	getFilterValue(){
+		if(filterValue && filterValue !== "")
+			return filterValue.split(",");
+		else
+			return [];
+	}
+
 	handleActions(action) {
     	console.log(action);
 
@@ -26,6 +34,13 @@ class MessageBodyStore extends EventEmitter {
                 this.messageId = action.messageId;
                 this.messageBody = action.messageBody;
                 this.emit("messageBodyDidDownload");
+            }
+			case "UPDATE_FILTER_VALUE": {
+                this.filterValue = action.filterValue;
+                this.emit("filterValueUpdated");
+            }
+			case "APPLY_FILTER_VALUE": {
+                this.emit("applyFilterValue");
             }
         }
 	}

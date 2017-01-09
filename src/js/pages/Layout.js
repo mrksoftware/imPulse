@@ -1,7 +1,8 @@
 import React from "react";
 
-import PulseAddressBar from "../components/PulseAddressBar";
 import ErrorList from "../components/ErrorList";
+import PrintFilterBar from "../components/PrintFilterBar"
+import PulseAddressBar from "../components/PulseAddressBar";
 
 import PulseStore from "../stores/PulseStore";
 
@@ -19,6 +20,7 @@ export default class Layout extends React.Component {
     return (
       <div>
         <PulseAddressBar pulseAddressValue={pulseAddressValue.url} />
+        <PrintFilterBar filterValue="IdOrdineProduzione, Cv" />
         <ErrorList />
       </div>
     );
