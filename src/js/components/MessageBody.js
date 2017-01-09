@@ -40,7 +40,7 @@ export default class MessageBody extends React.Component {
     render() {
         return(
         	<div>
-        		<span key={this.state.messageId}>{this.state.messageBody}</span>
+        		<span key={this.state.messageId}>{JSON.stringify(this.state.messageBody)}</span>
         	</div>
         );
     }
