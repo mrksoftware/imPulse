@@ -16,7 +16,7 @@ export function downloadErrorGroupsList(url) {
     //http://localhost:33333/api/recoverability/groups
     const errorAPI = url + "/api/recoverability/groups"; 
     axios(errorAPI).then((response) => {
-        console.log("Received: ", errorAPI, response);
+        //console.log("Received: ", errorAPI, response);
        dispatcher.dispatch({
             type: "DOWNLOADED_ERROR_LIST",
             response: response,
@@ -35,7 +35,7 @@ export function downloadErrorList(url, groupId) {
     //http://localhost:33333/api/recoverability/groups
     const errorAPI = url + "/api/recoverability/groups/" + groupId + "/errors"; 
     axios(errorAPI).then((response) => {
-        console.log("Received: ", response);
+        //console.log("Received: ", response);
        dispatcher.dispatch({
             type: "DOWNLOADED_ERROR_LIST",
             response: response,
@@ -57,7 +57,7 @@ export function downloadMessageBodyList(url, messageIds) {
     messageIds.map(function(messageId){
         const errorAPI = url + "/api/messages/" + messageId + "/body"; 
         axios(errorAPI).then((response) => {
-            console.log("Received body List: ", response);
+            //console.log("Received body List: ", response);
             messageBodyList.push(response.data);
         }).catch((err) => {
             //TODO

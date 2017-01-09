@@ -28,7 +28,7 @@ class PulseStore extends EventEmitter {
     }
 
     handleActions(action) {
-        console.log(action);
+        //console.log(action);
         switch(action.type) {
             case "UPDATE_PULSE_ADDRESS": {
                 this.pulseAddressValue = {url: action.url};
@@ -38,14 +38,14 @@ class PulseStore extends EventEmitter {
                 this.emit("fetchingErrorList");                
             }
             case "DOWNLOADED_ERROR_LIST": {
-                console.log("AddresValue in PulseStore: ", this.pulseAddressValue);
+                //console.log("AddresValue in PulseStore: ", this.pulseAddressValue);
                 this.errorList = action.response;
                 this.responseType = action.responseType;
                 this.selectedGroupId = action.selectedGroupId;
                 this.emit("errorListDownloaded");
             }
             case "DOWNLOADED_MESSAGE_BODY_LIST": {
-                console.log(this.action);
+                //console.log(this.action);
                 this.errorList = action.response;
                 this.responseType = action.responseType;
                 this.emit("messageBodyListDownloaded");

@@ -5,7 +5,7 @@ import axios from "axios";
 export function downloadMessageBodyAsync(url, messageId) {
 	var uri = url + "/api/messages/" + messageId + "/body"; 
 	axios(uri).then((response) => {
-	    console.log("Received body (id, response): ", messageId, response);
+	    //console.log("Received body (id, response): ", messageId, response);
 	   dispatcher.dispatch({
 	        type: "DOWNLOAD_MESSAGE_BODY_ASYNC",
 	        messageId: messageId,

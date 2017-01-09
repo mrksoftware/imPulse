@@ -18,25 +18,25 @@ export default class MessageBody extends React.Component {
     }
 
     downloadMessageBodyAsync(url, messageId) {
-    	console.log("Fired action: downloadMessageBodyAsync", messageId);
+    	//console.log("Fired action: downloadMessageBodyAsync", messageId);
     	MessageBodyActions.downloadMessageBodyAsync(url, messageId);
     }
 
     componentDidMount() {
-    	console.log("ComponentDidMount", this.props);
+    	//console.log("ComponentDidMount", this.props);
     	this.setState({
 			messageId: this.props.messageId,
 			url: this.props.url,
 			errorType: this.props.errorType,
 			exceptionMessage: this.props.exceptionMessage
 		});
-		console.log("Firing action: downloadMessageBodyAsync", this.props.messageId);
+		//console.log("Firing action: downloadMessageBodyAsync", this.props.messageId);
     	this.downloadMessageBodyAsync(this.props.url, this.props.messageId);
     }
 
     componentWillMount() {
 	    MessageBodyStore.on("messageBodyDidDownload", () => {
-	        console.log("messageBodyDidDownload catched")
+	        //console.log("messageBodyDidDownload catched")
 			if(this.state.messageId === MessageBodyStore.getMessageId()){
 				this.setState({
 					messageBody: MessageBodyStore.getMessageBody(),
@@ -46,11 +46,11 @@ export default class MessageBody extends React.Component {
 	    });
 
 		MessageBodyStore.on("filterValueUpdated", () => {
-	        console.log("filterErrorList catched")
+	        //console.log("filterErrorList catched")
 	    });
 
 		MessageBodyStore.on("applyFilterValue", () => {
-	        console.log("filterValueUpdated catched", MessageBodyStore.getFilterValue())
+	        //console.log("filterValueUpdated catched", MessageBodyStore.getFilterValue())
 	        this.setState({
 				filterValue: MessageBodyStore.getFilterValue()
 			});
@@ -61,21 +61,21 @@ export default class MessageBody extends React.Component {
 		var result = "";
 		result = result + this.state.errorType + "|"; //Add errorType
 		result = result + this.state.exceptionMessage + "|"; //add exceptionMessage
-		result = result + JSON.stringify(messageBody) + "|"; //add messageBody
-		console.log("If result: ", filterValue, filterValue.lenght, filterValue.lenght > 0);
 		if(filterValue) {
-			console.log("Apply filter: ", filterValue);
+			//console.log("Apply filter: ", filterValue);
 			filterValue.map(function(filter){
 				if(messageBody.hasOwnProperty(filter))
 					result = result + messageBody[filter] + "|"; //add idOrdineProduzione
 			});
 		}
+		result = result + JSON.stringify(messageBody) + "|"; //add messageBody
+		//console.log("If result: ", filterValue, filterValue.lenght, filterValue.lenght > 0);
 		
 		return result;
 	}
 
     render() {
-		console.log("rendering: ", this.state.messageBody, this.state.filterValue);
+		//console.log("rendering: ", this.state.messageBody, this.state.filterValue);
 		var result = this.getFormattedMessage(this.state.messageBody.data, this.state.filterValue);
         return(
         	<div>

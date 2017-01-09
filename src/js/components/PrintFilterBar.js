@@ -32,7 +32,7 @@ export default class PrintFilterBar extends React.Component {
             <div class="input-group">
                 <input type="text" class="form-control" id="address" value={this.state.filterValue} onChange={this.changeFilterValue.bind(this)} />
                 <span class="input-group-btn">
-                    <button id="btnSubmit" class="btn btn-info" type="button" onClick={this.filterErrorList.bind(this)}>Filter!</button>
+                    <button id="btnSubmit" class="btn btn-info" type="button" onClick={this.filterErrorList.bind(this)}>Filter</button>
                 </span>
             </div>
             </div>

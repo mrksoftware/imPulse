@@ -29,7 +29,7 @@ class MessageBodyStore extends EventEmitter {
 	}
 
 	handleActions(action) {
-    	console.log(action);
+    	//console.log(action);
 
     	switch(action.type) {
             case "DOWNLOAD_MESSAGE_BODY_ASYNC": {
