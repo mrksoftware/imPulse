@@ -57,8 +57,8 @@ export function downloadMessageBodyList(url, messageIds) {
     messageIds.map(function(messageId){
         const errorAPI = url + "/api/messages/" + messageId + "/body"; 
         axios(errorAPI).then((response) => {
-            console.log("Received: ", response);
-            messageBodyList.push(response);
+            console.log("Received body List: ", response);
+            messageBodyList.push(response.data);
         }).catch((err) => {
             //TODO
         });

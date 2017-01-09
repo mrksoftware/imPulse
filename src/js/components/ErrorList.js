@@ -72,16 +72,15 @@ export default class ErrorList extends React.Component {
                 console.log("messageBodyListDownloaded catched")
                 console.log("Message Body list: ", PulseStore.getErrorList());
 
-                var text = "";
+                var text = [];
                 PulseStore.getErrorList().map(function(body){
-                    text = text + body;
+                    text.push(body);
                 });
                 console.log(text);
-                var url = this.maketextFile(text);
 
                 this.setState({
                     address: PulseStore.getPulseAddress().url,
-                    errorList: url,
+                    errorList: text,
                     responseType: "downloadLink"
                 });
             }
@@ -118,7 +117,11 @@ export default class ErrorList extends React.Component {
                     errorList.push(<h4>Done</h4>);
                 } else if (this.state.responseType === "downloadLink") {
                     console.log("Download", this.state.errorList);
-                    errorList.push(<a href={this.state.errorList}>Download</a>);
+                    errorList = this.state.errorList.data.map((errorItem, i) =>
+                        <div key={errorItem.message_id}>
+                            <span id="description">{errorItem.toString()}</span>
+                        </div>
+                    );
                 }
             }
         }
