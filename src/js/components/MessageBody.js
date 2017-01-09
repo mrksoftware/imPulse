@@ -61,7 +61,7 @@ export default class MessageBody extends React.Component {
 		result = result + this.state.exceptionMessage + "|"; //add exceptionMessage
 		result = result + JSON.stringify(messageBody) + "|"; //add messageBody
 		console.log("If result: ", filterValue, filterValue.lenght, filterValue.lenght > 0);
-		if(filterValue.lenght > 0){
+		if(filterValue) {
 			console.log("Apply filter: ", filterValue);
 			filterValue.map(function(filter){
 				if(messageBody.hasOwnProperty(filter))
