@@ -3,3 +3,8 @@ body {
   margin-left: 12px;
   margin-right: 12px; 
 }
+
+hr {
+  background-color: #7f8c8d;
+  height: 1px;
+}
