@@ -95,6 +95,7 @@ export default class ErrorList extends React.Component {
                         <div key={errorItem.message_id}>
                             <h4 id="title">{errorItem.message_type}</h4>
                             <span id="description">{errorItem.exception.message}</span>
+                            <MessageBody messageId={errorItem.message_id} url={this.state.url} />
                         </div>
                     );
                     errorList.unshift(<button onClick={this.printButtonClick.bind(this)} class="btn btn-danger" key={this.state.selectedGroupId}>Print this group</button>);
