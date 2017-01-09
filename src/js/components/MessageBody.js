@@ -48,10 +48,10 @@ export default class MessageBody extends React.Component {
 		result = result + this.state.errorType + "|"; //Add errorType
 		result = result + this.state.exceptionMessage + "|"; //add exceptionMessage
 		result = result + JSON.stringify(messageBody) + "|"; //add messageBody
-		if(messageBody.hasOwnProperty("idOrdineProduzione"))
-			result = result + messageBody.idOrdineProduzione + "|"; //add idOrdineProduzione
-		if(messageBody.hasOwnProperty("cv"))
-			result = result + messageBody.cv + "|"; //add cv
+		if(messageBody.hasOwnProperty("IdOrdineProduzione"))
+			result = result + messageBody.IdOrdineProduzione + "|"; //add idOrdineProduzione
+		if(messageBody.hasOwnProperty("Cv"))
+			result = result + messageBody.Cv + "|"; //add cv
 		
 		return result;
 	}
