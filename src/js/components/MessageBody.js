@@ -55,15 +55,15 @@ export default class MessageBody extends React.Component {
 	    });
 	}
 
-	getFormattedMessage(messageBody) {
-		console.log("Format message: ", this.state, messageBody);
+	getFormattedMessage(messageBody, filterValue) {
+		console.log("Format message: ", this.state, messageBody, filterValue);
 		var result = "";
 		result = result + this.state.errorType + "|"; //Add errorType
 		result = result + this.state.exceptionMessage + "|"; //add exceptionMessage
 		result = result + JSON.stringify(messageBody) + "|"; //add messageBody
-		if(this.state.filterValue.lenght > 0){
-			console.log("Apply filter: ", this.state.filterValue);
-			this.state.filterValue.map(function(filter){
+		if(filterValue.lenght > 0){
+			console.log("Apply filter: ", filterValue);
+			filterValue.map(function(filter){
 				if(messageBody.hasOwnProperty(filter))
 					result = result + messageBody[filter] + "|"; //add idOrdineProduzione
 			});
@@ -73,8 +73,8 @@ export default class MessageBody extends React.Component {
 	}
 
     render() {
-		console.log("rendering: ", this.state.messageBody);
-		var result = this.getFormattedMessage(this.state.messageBody.data);
+		console.log("rendering: ", this.state.messageBody, this.state.filterValue);
+		var result = this.getFormattedMessage(this.state.messageBody.data, this.state.filterValue);
         return(
         	<div>
 				<span key={this.state.messageId}>{result}</span>
