@@ -27,7 +27,7 @@ export default class MessageBody extends React.Component {
     }
 
     componentWillMount() {
-	    PulseStore.on("messageBodyDidDownload", () => {
+	    MessageBodyStore.on("messageBodyDidDownload", () => {
 	        console.log("messageBodyDidDownload catched")
 	        this.setState({
 	            messageBody: MessageBodyStore.getMessageBody(),
