@@ -48,7 +48,7 @@ export default class MessageBody extends React.Component {
 	    });
 
 		MessageBodyStore.on("applyFilterValue", () => {
-	        console.log("filterErrorList catched")
+	        console.log("filterErrorList catched", MessageBodyStore.getFilterValue())
 	        this.setState({
 				filterValue: MessageBodyStore.getFilterValue()
 			});
@@ -61,6 +61,7 @@ export default class MessageBody extends React.Component {
 		result = result + this.state.exceptionMessage + "|"; //add exceptionMessage
 		result = result + JSON.stringify(messageBody) + "|"; //add messageBody
 		if(this.state.filterValue && this.state.filterValue.lenght > 0){
+			console.log("Apply filter: ", this.state.filterValue);
 			this.state.filterValue.map(function(filter){
 				if(messageBody.hasOwnProperty(filter))
 					result = result + messageBody[filter] + "|"; //add idOrdineProduzione
