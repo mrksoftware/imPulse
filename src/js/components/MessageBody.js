@@ -37,10 +37,12 @@ export default class MessageBody extends React.Component {
     componentWillMount() {
 	    MessageBodyStore.on("messageBodyDidDownload", () => {
 	        console.log("messageBodyDidDownload catched")
-	        this.setState({
-	            messageBody: MessageBodyStore.getMessageBody(),
-	            messageId: MessageBodyStore.getMessageId()
-	        });
+			if(this.state.messageId === MessageBodyStore.getMessageId()){
+				this.setState({
+					messageBody: MessageBodyStore.getMessageBody(),
+					messageId: MessageBodyStore.getMessageId()
+				});
+			}
 	    });
 
 		MessageBodyStore.on("filterValueUpdated", () => {
