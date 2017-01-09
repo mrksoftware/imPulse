@@ -24,7 +24,7 @@ export default class MessageBody extends React.Component {
     	this.setState({messageId: this.props.messageId});
     	this.setState({url: this.props.url});
 		console.log("Firing action: downloadMessageBodyAsync", this.props.messageId);
-    	downloadMessageBodyAsync(this.props.messageId);
+    	this.downloadMessageBodyAsync(this.props.messageId);
     }
 
     componentWillMount() {
