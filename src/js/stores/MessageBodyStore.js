@@ -20,8 +20,14 @@ class MessageBodyStore extends EventEmitter {
 	}
 
 	getFilterValue(){
-		if(this.filterValue && this.filterValue !== "")
-			return this.filterValue.split(",");
+		if(this.filterValue && this.filterValue !== ""){
+			var split = this.filterValue.split(",")
+			var selected = [];
+			for (var i = 0; i < split.length; i++) {
+				selected.push(split[i]);
+			}
+			return selected;
+		}
 		else
 			return ["IdSequenza"];
 	}
