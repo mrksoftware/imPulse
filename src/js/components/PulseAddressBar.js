@@ -18,6 +18,7 @@ export default class PulseAddressBar extends React.Component {
 
   changeAddress(event){
     this.setState({address: event.target.value});
+    PulseActions.updatePulseAddress(event.target.value);
   }
 
   downloadErrorGroupsList(event){
