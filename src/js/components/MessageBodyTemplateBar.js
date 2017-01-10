@@ -30,10 +30,12 @@ export default class MessageBodyTemplateBar extends React.Component {
     }
 
     render() {
+        console.log("Render TemplateBar", this.state);
         var filterList = [];
         this.state.filterValue.map(function(filter){
             filterList.push(<h4 class="horizontalStackPanel">{filter}</h4>);
         });
+        console.log("FilterList", filterList);
         return (
             <div key="legendBar">
                 <h4 class="horizontalStackPanel">HandlerName</h4>
