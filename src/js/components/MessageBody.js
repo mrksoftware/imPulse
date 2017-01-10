@@ -68,7 +68,7 @@ export default class MessageBody extends React.Component {
 					result = result + messageBody[filter] + "|"; //add idOrdineProduzione
 			});
 		}
-		result = result + JSON.stringify(messageBody) + "|"; //add messageBody
+		result = result + JSON.stringify(messageBody); //add messageBody
 		//console.log("If result: ", filterValue, filterValue.lenght, filterValue.lenght > 0);
 		
 		return result;
