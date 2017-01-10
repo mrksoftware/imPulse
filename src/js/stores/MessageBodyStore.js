@@ -25,7 +25,7 @@ class MessageBodyStore extends EventEmitter {
 			return split;
 		}
 		else
-			return ["IdSequenza"];
+			return undefined;
 	}
 
 	handleActions(action) {

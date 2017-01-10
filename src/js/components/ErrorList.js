@@ -101,12 +101,13 @@ export default class ErrorList extends React.Component {
                             <MessageBody    errorType={errorItem.message_type} 
                                             exceptionMessage={errorItem.exception.message}
                                             messageId={errorItem.message_id} 
-                                            url={this.state.address} ></MessageBody>
+                                            url={this.state.address}
+                                            key={errorItem.message_id} ></MessageBody>
                             <hr></hr>                            
                         </div>
                     );
                     errorList.unshift(
-                        <MessageBodyTemplateBar />
+                        <MessageBodyTemplateBar key="messageBodyTemplateBar" />
                     );
                 } 
             }
