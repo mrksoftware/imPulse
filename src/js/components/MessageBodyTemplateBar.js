@@ -39,7 +39,7 @@ export default class MessageBodyTemplateBar extends React.Component {
         }
         console.log("FilterList", filterList);
         return (
-            <div key="legendBar">
+            <div key="legendBar" class="innerDiv">
                 <h4 class="horizontalStackPanel">HandlerName</h4>
                 <h4 class="horizontalStackPanel">ExceptionMessage</h4>
                 {filterList}
