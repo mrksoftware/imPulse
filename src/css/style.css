@@ -16,3 +16,8 @@ hr {
 .input-group-addon {
   min-width: 50px;
 }
+
+.horizontalStackPanel {
+  display: inline;
+  margin: 12px;
+}

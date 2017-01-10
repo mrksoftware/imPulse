@@ -1,6 +1,7 @@
 import React from "react";
 
 import MessageBody from "./MessageBody"
+import MessageBodyTemplateBar from "./MessageBodyTemplateBar"
 
 import * as PulseActions from "../actions/PulseActions";
 import PulseStore from "../stores/PulseStore";
@@ -104,19 +105,10 @@ export default class ErrorList extends React.Component {
                             <hr></hr>                            
                         </div>
                     );
-                    //errorList.unshift(<button onClick={this.printButtonClick.bind(this)} class="btn btn-danger" key={this.state.selectedGroupId}>Print this group</button>);
-                } 
-
-                else if (this.state.responseType === "messageBodyList"){
-                    errorList.push(<h4>Done</h4>);
-                } else if (this.state.responseType === "downloadLink") {
-                    //console.log("Download", this.state.errorList);
-                    errorList = this.state.errorList.data.map((errorItem, i) =>
-                        <div key={errorItem.message_id}>
-                            <span id="description">{errorItem.toString()}</span>
-                        </div>
+                    errorList.unshift(
+                        <MessageBodyTemplateBar />
                     );
-                }
+                } 
             }
         }
 
