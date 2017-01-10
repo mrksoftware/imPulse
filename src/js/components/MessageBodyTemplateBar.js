@@ -9,7 +9,7 @@ export default class MessageBodyTemplateBar extends React.Component {
     constructor() {
         super();
         this.state = {
-            FilterValue: []
+            FilterValue: undefined
         }
     }
 
@@ -32,9 +32,11 @@ export default class MessageBodyTemplateBar extends React.Component {
     render() {
         console.log("Render TemplateBar", this.state);
         var filterList = [];
-        this.state.filterValue.map(function(filter){
-            filterList.push(<h4 class="horizontalStackPanel">{filter}</h4>);
-        });
+        if(this.state.filterValue !== undefined){
+            this.state.filterValue.map(function(filter){
+                filterList.push(<h4 class="horizontalStackPanel">{filter}</h4>);
+            });
+        }
         console.log("FilterList", filterList);
         return (
             <div key="legendBar">
