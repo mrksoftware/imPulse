@@ -19,13 +19,15 @@ hr {
 
 .horizontalStackPanel {
   margin: 12px;
+  color: white;
 }
 
 .innerDiv {
   display:flex;
-  justify-content:center;
   align-items:center;
   width:100%;
   background-color: #2980b9;
   min-height:40px;
+  margin-top: 12px;
+  margin-bottom: 12px;
 }

@@ -34,16 +34,16 @@ export default class MessageBodyTemplateBar extends React.Component {
         var filterList = [];
         if(this.state.filterValue !== undefined){
             this.state.filterValue.map(function(filter){
-                filterList.push(<h4 class="horizontalStackPanel">{filter}</h4>);
+                filterList.push(<h4 class="horizontalStackPanel" key={filter}>{filter}</h4>);
             });
         }
         console.log("FilterList", filterList);
         return (
             <div key="legendBar" class="innerDiv">
-                <h4 class="horizontalStackPanel">HandlerName</h4>
-                <h4 class="horizontalStackPanel">ExceptionMessage</h4>
+                <h4 class="horizontalStackPanel" key="handlerNameLegend">HandlerName</h4>
+                <h4 class="horizontalStackPanel" key="exceptionMessageLegend">ExceptionMessage</h4>
                 {filterList}
-                <h4 class="horizontalStackPanel">MessageBody</h4>
+                <h4 class="horizontalStackPanel" key="messageBodyLegend">MessageBody</h4>
             </div>
         );
     }
