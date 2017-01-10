@@ -1,7 +1,7 @@
 # imPulse 
 ### built on top of the ServiceInsight API by Particular
 
-[![Stories in Ready](https://badge.waffle.io/mrksoftware/impulse.png?label=ready&title=Ready)](https://waffle.io/mrksoftware/impulse)
+[![Stories in Ready](https://badge.waffle.io/mrksoftware/impulse.png?label=ready&title=Stories in Ready)](https://waffle.io/mrksoftware/impulse)
 
 ## Functionalities
 * Get error groups
@@ -13,4 +13,4 @@
 * Download code
 * Open a cmd instance in the project folder
 * run -> `npm install` (you need node.js to be installed on your machine)
-* run -> `webpack (before deploying the website)
+* run -> `webpack` (before deploying the website)
