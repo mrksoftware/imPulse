@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/mrksoftware/impulse.png?label=ready&title=Ready)](https://waffle.io/mrksoftware/impulse)
 # imPulse 
 ### built on top of the ServiceInsight API by Particular
 
