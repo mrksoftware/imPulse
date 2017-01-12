@@ -113,13 +113,15 @@ export default class ErrorList extends React.Component {
                             <hr></hr>                            
                         </div>
                     );*/
+                    var pulseUrl = this.state.address;
                     var dataContext = [];
+                    console.log(pulseUrl, dataContext);
                     this.state.errorList.data.map(function(errorItem){ 
                         dataContext.push({
                             message_id: errorItem.message_id,
                             message_type: errorItem.message_type,
                             exception_message: errorItem.exception.message,
-                            address: this.state.address 
+                            address: pulseUrl
                         });
                     });
                     console.log(dataContext);
