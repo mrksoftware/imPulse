@@ -2,6 +2,7 @@ import React from "react";
 
 import MessageBodyCell from "./MessageBodyCell"
 import MessageBodyTemplateBar from "./MessageBodyTemplateBar"
+import MessageBodyStore from "../stores/MessageBodyStore";
 
 import * as PulseActions from "../actions/PulseActions";
 import PulseStore from "../stores/PulseStore";
@@ -16,7 +17,8 @@ export default class ErrorList extends React.Component {
             address: null,
             errorList: null,
             responseType: null,
-            selectedGroupId: null
+            selectedGroupId: null,
+            filterValue: null
         }
     }
 
@@ -75,6 +77,13 @@ export default class ErrorList extends React.Component {
                 });
             }
         });
+
+        MessageBodyStore.on("applyFilterValue", () => {
+	        //console.log("filterValueUpdated catched", MessageBodyStore.getFilterValue())
+	        this.setState({
+                filterValue: MessageBodyStore.getFilterValue()
+			});
+	    });
     }
 
     componentDidMount() {
@@ -85,6 +94,10 @@ export default class ErrorList extends React.Component {
         console.log("Formatter", cell, row);
         return <MessageBodyCell key={row.message_id} url={cell} messageId={row.message_id}></MessageBodyCell>;
     }
+
+    /*additionalCellFormatter(cell, row) {
+        row.
+    }*/
 
     render() {
         console.log("render with state: ", this.state)
@@ -115,6 +128,16 @@ export default class ErrorList extends React.Component {
                     );*/
                     var pulseUrl = PulseStore.getPulseAddress();
                     var dataContext = [];
+                    /*var additionalCell = [];
+
+                    if(this.state.filterValue) {
+                        this.state.filterValue.map(function(filter){
+                            additionalCell.push(
+                               <TableHeaderColumn dataField="filter" dataFormat={this.additionalCellFormatter}>{filter}</TableHeaderColumn> 
+                            );
+                        });
+                    }*/
+
                     console.log(pulseUrl, dataContext);
                     this.state.errorList.data.map(function(errorItem){ 
                         dataContext.push({
@@ -125,14 +148,14 @@ export default class ErrorList extends React.Component {
                         });
                     });
                     console.log(dataContext);
-                    /*errorList.push( 
+                    errorList.push( 
                         <BootstrapTable data={dataContext} striped={true} hover={true} exportCSV>
                             <TableHeaderColumn dataField="message_id" isKey={true} >Message ID</TableHeaderColumn>
                             <TableHeaderColumn dataField="message_type" dataAlign="left" >Message Type</TableHeaderColumn>
                             <TableHeaderColumn dataField="exception_message" >Exception Message</TableHeaderColumn>
-                            <TableHeaderColumn dataField="address" dataFormat={this.messageBodyFormatter}>Exception Message</TableHeaderColumn>
+                            <TableHeaderColumn dataField="address" dataFormat={this.messageBodyFormatter}>Message Body</TableHeaderColumn>
                         </BootstrapTable>
-                    );*/
+                    );
                     errorList.unshift(
                         <MessageBodyTemplateBar key="messageBodyTemplateBar" />
                     );
