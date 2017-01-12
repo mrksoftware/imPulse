@@ -107,7 +107,7 @@ export default class ErrorList extends React.Component {
     }
 
     render() {
-        console.log("render with state: ", this.state)
+        //console.log("render with state: ", this.state)
         var errorList = [];
         if(this.state.errorList!=undefined){
             //console.log("loading from state", this.state.errorList);
@@ -140,11 +140,11 @@ export default class ErrorList extends React.Component {
                     if(this.state.filterValue) {
                         this.state.filterValue.map(function(filter){
                             additionalCell.push(
-                                <TableHeaderColumn dataField={filter} dataFormat={this.additionalCellFormatter}>{filter}</TableHeaderColumn>
+                                <TableHeaderColumn dataField={filter} dataFormat={this.additionalCellFormatter} key={filter}>{filter}</TableHeaderColumn>
                             );
                         });
                     }
-                    console.log(pulseUrl, dataContext);
+                    console.log("DataContext: ", pulseUrl, dataContext);
                     this.state.errorList.data.map(function(errorItem){ 
                         dataContext.push({
                             message_id: errorItem.message_id,
@@ -154,15 +154,26 @@ export default class ErrorList extends React.Component {
                         });
                     });
                     console.log(dataContext);
-                    errorList.push( 
-                        <BootstrapTable data={dataContext} striped={true} hover={true} exportCSV>
-                            <TableHeaderColumn dataField="message_id" isKey={true} >Message ID</TableHeaderColumn>
-                            <TableHeaderColumn dataField="message_type" dataAlign="left" >Message Type</TableHeaderColumn>
-                            <TableHeaderColumn dataField="exception_message" >Exception Message</TableHeaderColumn>
-                            <TableHeaderColumn dataField="address" dataFormat={this.messageBodyFormatter}>Message Body</TableHeaderColumn>
-                            {additionalCell}
-                        </BootstrapTable>
-                    );
+                    if(this.state.filterValue){
+                        errorList.push( 
+                            <BootstrapTable data={dataContext} striped={true} hover={true} exportCSV>
+                                <TableHeaderColumn dataField="message_id" isKey={true} >Message ID</TableHeaderColumn>
+                                <TableHeaderColumn dataField="message_type" dataAlign="left" >Message Type</TableHeaderColumn>
+                                <TableHeaderColumn dataField="exception_message" >Exception Message</TableHeaderColumn>
+                                <TableHeaderColumn dataField="address" dataFormat={this.messageBodyFormatter}>Message Body</TableHeaderColumn>
+                                {additionalCell}
+                            </BootstrapTable>
+                        );
+                    } else {
+                        errorList.push( 
+                            <BootstrapTable data={dataContext} striped={true} hover={true} exportCSV>
+                                <TableHeaderColumn dataField="message_id" isKey={true} >Message ID</TableHeaderColumn>
+                                <TableHeaderColumn dataField="message_type" dataAlign="left" >Message Type</TableHeaderColumn>
+                                <TableHeaderColumn dataField="exception_message" >Exception Message</TableHeaderColumn>
+                                <TableHeaderColumn dataField="address" dataFormat={this.messageBodyFormatter}>Message Body</TableHeaderColumn>
+                            </BootstrapTable>
+                        );
+                    }
                     errorList.unshift(
                         <MessageBodyTemplateBar key="messageBodyTemplateBar" />
                     );
