@@ -108,7 +108,7 @@ export default class ErrorList extends React.Component {
                             <hr></hr>                            
                         </div>
                     );*/
-                    var dataContext = errorList.data;
+                    var dataContext = this.state.errorList.data;
                     console.log(dataContext);
                     errorList.push( 
                         <BootstrapTable data={dataContext} striped={true} hover={true}>
