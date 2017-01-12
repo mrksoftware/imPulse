@@ -113,7 +113,7 @@ export default class ErrorList extends React.Component {
                             <hr></hr>                            
                         </div>
                     );*/
-                    var pulseUrl = this.state.address;
+                    var pulseUrl = PulseStore.getPulseAddress();
                     var dataContext = [];
                     console.log(pulseUrl, dataContext);
                     this.state.errorList.data.map(function(errorItem){ 
@@ -125,14 +125,14 @@ export default class ErrorList extends React.Component {
                         });
                     });
                     console.log(dataContext);
-                    errorList.push( 
+                    /*errorList.push( 
                         <BootstrapTable data={dataContext} striped={true} hover={true} exportCSV>
                             <TableHeaderColumn dataField="message_id" isKey={true} >Message ID</TableHeaderColumn>
                             <TableHeaderColumn dataField="message_type" dataAlign="left" >Message Type</TableHeaderColumn>
                             <TableHeaderColumn dataField="exception_message" >Exception Message</TableHeaderColumn>
                             <TableHeaderColumn dataField="address" dataFormat={this.messageBodyFormatter}>Exception Message</TableHeaderColumn>
                         </BootstrapTable>
-                    );
+                    );*/
                     errorList.unshift(
                         <MessageBodyTemplateBar key="messageBodyTemplateBar" />
                     );
