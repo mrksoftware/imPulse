@@ -120,10 +120,10 @@ export default class ErrorList extends React.Component {
                     });
                     console.log(dataContext);
                     errorList.push( 
-                        <BootstrapTable data={dataContext} striped={true} hover={true}>
-                            <TableHeaderColumn dataField="message_id" isKey={true} dataSort={true}>Message ID</TableHeaderColumn>
-                            <TableHeaderColumn dataField="message_type" isKey={true} dataAlign="left" dataSort={true}>Message Type</TableHeaderColumn>
-                            <TableHeaderColumn dataField="exception_message" dataSort={true}>Exception Message</TableHeaderColumn>
+                        <BootstrapTable data={dataContext} striped={true} hover={true} exportCSV>
+                            <TableHeaderColumn dataField="message_id" isKey={true} >Message ID</TableHeaderColumn>
+                            <TableHeaderColumn dataField="message_type" dataAlign="left" >Message Type</TableHeaderColumn>
+                            <TableHeaderColumn dataField="exception_message" >Exception Message</TableHeaderColumn>
                         </BootstrapTable>
                     );
                     errorList.unshift(
