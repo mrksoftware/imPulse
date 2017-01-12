@@ -1,6 +1,6 @@
 import React from "react";
 
-import MessageBody from "./MessageBody"
+import MessageBodyCell from "./MessageBodyCell"
 import MessageBodyTemplateBar from "./MessageBodyTemplateBar"
 
 import * as PulseActions from "../actions/PulseActions";
@@ -81,7 +81,10 @@ export default class ErrorList extends React.Component {
         this.setState({address: PulseStore.getPulseAddress().url});
     }
 
-
+    messageBodyFormatter(cell, row) {
+        console.log("Formatter", cell, row);
+        return <MessageBodyCell url={this.state.address} messageId={cell} />;
+    }
 
     render() {
         //console.log("render with state: ", this.state)
@@ -124,6 +127,7 @@ export default class ErrorList extends React.Component {
                             <TableHeaderColumn dataField="message_id" isKey={true} >Message ID</TableHeaderColumn>
                             <TableHeaderColumn dataField="message_type" dataAlign="left" >Message Type</TableHeaderColumn>
                             <TableHeaderColumn dataField="exception_message" >Exception Message</TableHeaderColumn>
+                            <TableHeaderColumn dataField="message_id" dataFormat={messageBodyFormatter}>Exception Message</TableHeaderColumn>
                         </BootstrapTable>
                     );
                     errorList.unshift(
