@@ -82,8 +82,8 @@ export default class ErrorList extends React.Component {
     }
 
     messageBodyFormatter(cell, row) {
-        console.log("Formatter", cell, this.state.address, row);
-        return <MessageBodyCell key={cell} url={this.state.address} messageId={cell}></MessageBodyCell>;
+        console.log("Formatter", cell, row);
+        return <MessageBodyCell key={row.message_id} url={cell} messageId={row.message_id}></MessageBodyCell>;
     }
 
     render() {
@@ -118,7 +118,8 @@ export default class ErrorList extends React.Component {
                         dataContext.push({
                             message_id: errorItem.message_id,
                             message_type: errorItem.message_type,
-                            exception_message: errorItem.exception.message
+                            exception_message: errorItem.exception.message,
+                            address: this.state.address 
                         });
                     });
                     console.log(dataContext);
@@ -127,7 +128,7 @@ export default class ErrorList extends React.Component {
                             <TableHeaderColumn dataField="message_id" isKey={true} >Message ID</TableHeaderColumn>
                             <TableHeaderColumn dataField="message_type" dataAlign="left" >Message Type</TableHeaderColumn>
                             <TableHeaderColumn dataField="exception_message" >Exception Message</TableHeaderColumn>
-                            <TableHeaderColumn dataField="message_id" dataFormat={this.messageBodyFormatter}>Exception Message</TableHeaderColumn>
+                            <TableHeaderColumn dataField="address" dataFormat={this.messageBodyFormatter}>Exception Message</TableHeaderColumn>
                         </BootstrapTable>
                     );
                     errorList.unshift(
