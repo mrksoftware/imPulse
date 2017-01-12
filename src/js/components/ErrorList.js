@@ -87,7 +87,7 @@ export default class ErrorList extends React.Component {
     }
 
     render() {
-        //console.log("render with state: ", this.state)
+        console.log("render with state: ", this.state)
         var errorList = [];
         if(this.state.errorList!=undefined){
             //console.log("loading from state", this.state.errorList);
