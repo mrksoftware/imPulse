@@ -81,6 +81,11 @@ export default class ErrorList extends React.Component {
         this.setState({address: PulseStore.getPulseAddress().url});
     }
 
+    messageBodyFormatter(cell,row){
+        console.log("Formatter", cell, row);
+        return cell;
+    }
+
     render() {
         //console.log("render with state: ", this.state)
         var errorList = [];
@@ -112,8 +117,10 @@ export default class ErrorList extends React.Component {
                     console.log(dataContext);
                     errorList.push( 
                         <BootstrapTable data={dataContext} striped={true} hover={true}>
-                            <TableHeaderColumn dataField="message_type" isKey={true} dataAlign="center" dataSort={true}>Message Type</TableHeaderColumn>
-                            <TableHeaderColumn dataField="status" dataSort={true}>Exception Message</TableHeaderColumn>
+                            <TableHeaderColumn dataField="message_id" isKey={true} dataSort={true}>Message ID</TableHeaderColumn>
+                            <TableHeaderColumn dataField="message_type" isKey={true} dataAlign="left" dataSort={true}>Message Type</TableHeaderColumn>
+                            <TableHeaderColumn dataField="exception.message" dataSort={true}>Exception Message</TableHeaderColumn>
+                            <TableHeaderColumn dataField="message_id" dataSort={true} dataFormat={messageBodyFormatter}>Message Body</TableHeaderColumn>
                         </BootstrapTable>
                     );
                     errorList.unshift(
