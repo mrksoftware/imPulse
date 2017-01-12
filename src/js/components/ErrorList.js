@@ -6,6 +6,8 @@ import MessageBodyTemplateBar from "./MessageBodyTemplateBar"
 import * as PulseActions from "../actions/PulseActions";
 import PulseStore from "../stores/PulseStore";
 
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+
 
 export default class ErrorList extends React.Component {
     constructor() {
@@ -96,7 +98,7 @@ export default class ErrorList extends React.Component {
                         </div>
                     );
                 } else if (this.state.responseType === "messageList") {
-                    errorList = this.state.errorList.data.map((errorItem, i) =>
+                    /*errorList = this.state.errorList.data.map((errorItem, i) =>
                         <div key={errorItem.message_id}>
                             <MessageBody    errorType={errorItem.message_type} 
                                             exceptionMessage={errorItem.exception.message}
@@ -105,7 +107,11 @@ export default class ErrorList extends React.Component {
                                             key={errorItem.message_id} ></MessageBody>
                             <hr></hr>                            
                         </div>
-                    );
+                    );*/
+                    errorList =  <BootstrapTable data={errorList.data} striped={true} hover={true}>
+                                    <TableHeaderColumn dataField="message_type" isKey={true} dataAlign="center" dataSort={true}>Message Type</TableHeaderColumn>
+                                    <TableHeaderColumn dataField="exception.message" dataSort={true}>Exception Message</TableHeaderColumn>
+                                 </BootstrapTable>;
                     errorList.unshift(
                         <MessageBodyTemplateBar key="messageBodyTemplateBar" />
                     );
