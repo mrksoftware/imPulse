@@ -127,7 +127,7 @@ export default class ErrorList extends React.Component {
                             <TableHeaderColumn dataField="message_id" isKey={true} >Message ID</TableHeaderColumn>
                             <TableHeaderColumn dataField="message_type" dataAlign="left" >Message Type</TableHeaderColumn>
                             <TableHeaderColumn dataField="exception_message" >Exception Message</TableHeaderColumn>
-                            <TableHeaderColumn dataField="message_id" dataFormat={messageBodyFormatter}>Exception Message</TableHeaderColumn>
+                            <TableHeaderColumn dataField="message_id" dataFormat={this.messageBodyFormatter}>Exception Message</TableHeaderColumn>
                         </BootstrapTable>
                     );
                     errorList.unshift(
