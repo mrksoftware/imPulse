@@ -140,7 +140,7 @@ export default class ErrorList extends React.Component {
                     if(this.state.filterValue) {
                         this.state.filterValue.map(function(filter){
                             additionalCell.push(
-                                <TableHeaderColumn dataField={filter} dataFormat={this.additionalCellFormatter} key={filter}>{filter}</TableHeaderColumn>
+                                <TableHeaderColumn dataField="message_id" dataFormat={this.additionalCellFormatter} key={filter}>{filter}</TableHeaderColumn>
                             );
                         });
                     }
