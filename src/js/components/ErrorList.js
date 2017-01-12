@@ -136,6 +136,7 @@ export default class ErrorList extends React.Component {
                     var pulseUrl = this.state.address;
                     var dataContext = [];
                     var additionalCell = [];
+                    console.log("FilterValue Table: ", this.state.filterValue);
                     if(this.state.filterValue) {
                         this.state.filterValue.map(function(filter){
                             additionalCell.push(
