@@ -17,8 +17,7 @@ export default class ErrorList extends React.Component {
             address: null,
             errorList: null,
             responseType: null,
-            selectedGroupId: null,
-            filterValue: null
+            selectedGroupId: null
         }
     }
 
