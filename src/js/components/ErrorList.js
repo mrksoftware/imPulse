@@ -2,7 +2,7 @@ import React from "react";
 
 import MessageBodyCell from "./MessageBodyCell"
 import MessageBodyTemplateBar from "./MessageBodyTemplateBar"
-import MessageBodyStore from "../stores/MessageBodyStore";
+//import MessageBodyStore from "../stores/MessageBodyStore";
 
 import * as PulseActions from "../actions/PulseActions";
 import PulseStore from "../stores/PulseStore";
@@ -78,12 +78,12 @@ export default class ErrorList extends React.Component {
             }
         });
 
-        MessageBodyStore.on("applyFilterValue", () => {
+        /*MessageBodyStore.on("applyFilterValue", () => {
 	        //console.log("filterValueUpdated catched", MessageBodyStore.getFilterValue())
 	        this.setState({
                 filterValue: MessageBodyStore.getFilterValue()
 			});
-	    });
+	    });*/
     }
 
     componentDidMount() {
