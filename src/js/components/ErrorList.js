@@ -113,13 +113,20 @@ export default class ErrorList extends React.Component {
                             <hr></hr>                            
                         </div>
                     );*/
-                    var dataContext = this.state.errorList.data;
+                    var dataContext = [];
+                    this.state.errorList.data.map(function(errorItem){ 
+                        dataContext.push({
+                            message_id: errorItem.message_id,
+                            message_type: errorItem.message_type,
+                            exception_message: errorItem.exception.message
+                        });
+                    });
                     console.log(dataContext);
                     errorList.push( 
                         <BootstrapTable data={dataContext} striped={true} hover={true}>
                             <TableHeaderColumn dataField="message_id" isKey={true} dataSort={true}>Message ID</TableHeaderColumn>
                             <TableHeaderColumn dataField="message_type" isKey={true} dataAlign="left" dataSort={true}>Message Type</TableHeaderColumn>
-                            <TableHeaderColumn dataField="exception.message" dataSort={true}>Exception Message</TableHeaderColumn>
+                            <TableHeaderColumn dataField="exception_message" dataSort={true}>Exception Message</TableHeaderColumn>
                             <TableHeaderColumn dataField="message_id" dataSort={true} dataFormat={messageBodyFormatter}>Message Body</TableHeaderColumn>
                         </BootstrapTable>
                     );
