@@ -58,7 +58,7 @@ export default class MessageBodyCell extends React.Component {
 	getFormattedMessage(messageBody, filterValue) {
 		var result = "";
 		if(filterValue) {
-			//console.log("Apply filter: ", filterValue);
+			console.log("Apply filter: ", filterValue);
 			filterValue.map(function(filter){
 				if(messageBody.hasOwnProperty(filter))
 					result = result + messageBody[filter] + "|"; //add idOrdineProduzione
@@ -71,7 +71,7 @@ export default class MessageBodyCell extends React.Component {
 	}
 
     render() {
-		//console.log("rendering: ", this.state.messageBody, this.state.filterValue);
+		console.log("rendering: ", this.state.messageBody, this.state.filterValue);
 		var result = this.getFormattedMessage(this.state.messageBody.data, this.state.filterValue);
         return(
         	<div>

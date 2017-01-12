@@ -82,8 +82,8 @@ export default class ErrorList extends React.Component {
     }
 
     messageBodyFormatter(cell, row) {
-        console.log("Formatter", cell, row);
-        return <MessageBodyCell url={this.state.address} messageId={cell} />;
+        console.log("Formatter", cell, this.state.address, row);
+        return <MessageBodyCell key={cell} url={this.state.address} messageId={cell}></MessageBodyCell>;
     }
 
     render() {
