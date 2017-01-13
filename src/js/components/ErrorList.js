@@ -2,7 +2,7 @@ import React from "react";
 
 import MessageBodyCell from "./MessageBodyCell"
 import MessageBodyTemplateBar from "./MessageBodyTemplateBar"
-import MessageBodyStore from "../stores/MessageBodyStore";
+//import MessageBodyStore from "../stores/MessageBodyStore";
 
 import * as PulseActions from "../actions/PulseActions";
 import PulseStore from "../stores/PulseStore";
@@ -78,12 +78,12 @@ export default class ErrorList extends React.Component {
             }
         });
 
-        MessageBodyStore.on("applyFilterValue", () => {
+        /*MessageBodyStore.on("applyFilterValue", () => {
 	        //console.log("filterValueUpdated catched", MessageBodyStore.getFilterValue())
 	        this.setState({
 				filterValue: MessageBodyStore.getFilterValue()
 			});
-	    });
+	    });*/
     }
 
     componentDidMount() {
@@ -123,7 +123,7 @@ export default class ErrorList extends React.Component {
                         </div>
                     );
                 } else if (this.state.responseType === "messageList") {
-                    /*errorList = this.state.errorList.data.map((errorItem, i) =>
+                    errorList = this.state.errorList.data.map((errorItem, i) =>
                         <div key={errorItem.message_id}>
                             <MessageBody    errorType={errorItem.message_type} 
                                             exceptionMessage={errorItem.exception.message}
@@ -132,8 +132,8 @@ export default class ErrorList extends React.Component {
                                             key={errorItem.message_id} ></MessageBody>
                             <hr></hr>                            
                         </div>
-                    );*/
-                    var pulseUrl = this.state.address;
+                    );
+                    /*var pulseUrl = this.state.address;
                     var dataContext = [];
                     var additionalCell = [];
                     console.log("FilterValue Table: ", this.state.filterValue);
@@ -174,7 +174,7 @@ export default class ErrorList extends React.Component {
                                 <TableHeaderColumn dataField="address" dataFormat={this.messageBodyFormatter}>Message Body</TableHeaderColumn>
                             </BootstrapTable>
                         );
-                    }
+                    }*/
                     errorList.unshift(
                         <MessageBodyTemplateBar key="messageBodyTemplateBar" />
                     );
