@@ -139,12 +139,13 @@ export default class ErrorList extends React.Component {
                     console.log("FilterValue Table: ", this.state.filterValue);
                     if(this.state.filterValue) {
                         this.state.filterValue.map(function(filter){
+                            console.log("Filtervalue: ", filter);
                             additionalCell.push(
                                 <TableHeaderColumn dataField="message_id" dataFormat={this.additionalCellFormatter} key={filter}>{filter}</TableHeaderColumn>
                             );
                         });
                     }
-                    console.log("DataContext: ", pulseUrl, dataContext);
+                    console.log("DataContext: ", additionalCell, pulseUrl, dataContext);
                     this.state.errorList.data.map(function(errorItem){ 
                         dataContext.push({
                             message_id: errorItem.message_id,
