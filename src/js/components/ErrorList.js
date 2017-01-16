@@ -1,8 +1,13 @@
 import React from "react";
+import Linq from "linq";
 
 import MessageBodyCell from "./MessageBodyCell"
 import MessageBodyTemplateBar from "./MessageBodyTemplateBar"
 //import MessageBodyStore from "../stores/MessageBodyStore";
+
+import * as MessageBodyActions from "../actions/MessageBodyActions";
+import MessageBodyStore from "../stores/MessageBodyStore";
+
 
 import * as PulseActions from "../actions/PulseActions";
 import PulseStore from "../stores/PulseStore";
@@ -18,7 +23,8 @@ export default class ErrorList extends React.Component {
             errorList: null,
             responseType: null,
             selectedGroupId: null,
-            filterValue: null
+            filterValue: null,
+            messageList: []
         }
     }
 
@@ -50,9 +56,20 @@ export default class ErrorList extends React.Component {
 
         PulseStore.on("errorListDownloaded", () => {
             //console.log("errorListDownloaded catched")
+
+            var errorList = [];
+            PulseStore.getErrorList().data.map((errorItem, i) => {
+                MessageBodyActions.downloadMessageBodyAsync(PulseStore.getPulseAddress().url, errorItem.message_id);
+                errorItem.errorType = errorItem.message_type;
+                errorItem.exceptionMessage = errorItem.exception.message;
+                errorItem.messageId = errorItem.message_id;
+                errorItem.messageBody = "Loading...";
+                errorList.push(errorItem);
+            });
+
             this.setState({
                 address: PulseStore.getPulseAddress().url,
-                errorList: PulseStore.getErrorList(),
+                errorList: errorList,
                 responseType: PulseStore.getRepsonseType(),
                 selectedGroupId: PulseStore.getSelectedGroupId()
             });
@@ -123,7 +140,21 @@ export default class ErrorList extends React.Component {
                         </div>
                     );
                 } else if (this.state.responseType === "messageList") {
-                    errorList = this.state.errorList.data.map((errorItem, i) =>
+
+                    errorList = "<table>";
+                    
+                    this.state.errorList.data.map(function(err){
+                        errorList = errorList + "<tr key='" + err.messageId + "'>";
+                        for(var prop in err){
+                            if(err.hasOwnProperty(prop)){
+                                errorList = errorList + "<td>" + err[prop] + "</td>";
+                            }
+                        }
+                        errorList = errorList + "</tr>";
+                    });
+
+                    errorList = errorList + "</table>";
+                    /*errorList = this.state.errorList.data.map((errorItem, i) =>
                         <div key={errorItem.message_id}>
                             <MessageBody    errorType={errorItem.message_type} 
                                             exceptionMessage={errorItem.exception.message}
@@ -132,7 +163,7 @@ export default class ErrorList extends React.Component {
                                             key={errorItem.message_id} ></MessageBody>
                             <hr></hr>                            
                         </div>
-                    );
+                    );/*
                     /*var pulseUrl = this.state.address;
                     var dataContext = [];
                     var additionalCell = [];
