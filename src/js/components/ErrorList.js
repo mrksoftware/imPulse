@@ -1,18 +1,10 @@
 import React from "react";
-import Linq from "linq";
 
-import MessageBodyCell from "./MessageBodyCell"
+import MessageBody from "./MessageBody"
 import MessageBodyTemplateBar from "./MessageBodyTemplateBar"
-//import MessageBodyStore from "../stores/MessageBodyStore";
-
-import * as MessageBodyActions from "../actions/MessageBodyActions";
-import MessageBodyStore from "../stores/MessageBodyStore";
-
 
 import * as PulseActions from "../actions/PulseActions";
 import PulseStore from "../stores/PulseStore";
-
-import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 
 
 export default class ErrorList extends React.Component {
@@ -22,9 +14,7 @@ export default class ErrorList extends React.Component {
             address: null,
             errorList: null,
             responseType: null,
-            selectedGroupId: null,
-            filterValue: null,
-            messageList: []
+            selectedGroupId: null
         }
     }
 
@@ -56,20 +46,9 @@ export default class ErrorList extends React.Component {
 
         PulseStore.on("errorListDownloaded", () => {
             //console.log("errorListDownloaded catched")
-
-            var errorList = [];
-            PulseStore.getErrorList().data.map((errorItem, i) => {
-                MessageBodyActions.downloadMessageBodyAsync(PulseStore.getPulseAddress().url, errorItem.message_id);
-                errorItem.errorType = errorItem.message_type;
-                errorItem.exceptionMessage = errorItem.exception.message;
-                errorItem.messageId = errorItem.message_id;
-                errorItem.messageBody = "Loading...";
-                errorList.push(errorItem);
-            });
-
             this.setState({
                 address: PulseStore.getPulseAddress().url,
-                errorList: errorList,
+                errorList: PulseStore.getErrorList(),
                 responseType: PulseStore.getRepsonseType(),
                 selectedGroupId: PulseStore.getSelectedGroupId()
             });
@@ -94,33 +73,10 @@ export default class ErrorList extends React.Component {
                 });
             }
         });
-
-        /*MessageBodyStore.on("applyFilterValue", () => {
-	        //console.log("filterValueUpdated catched", MessageBodyStore.getFilterValue())
-	        this.setState({
-				filterValue: MessageBodyStore.getFilterValue()
-			});
-	    });*/
     }
 
     componentDidMount() {
         this.setState({address: PulseStore.getPulseAddress().url});
-    }
-
-    messageBodyFormatter(cell, row) {
-        console.log("Formatter", cell, row);
-        return <MessageBodyCell key={row.message_id} url={cell} messageId={row.message_id}></MessageBodyCell>;
-    }
-
-    additionalCellFormatter(cell, row) {
-        console.log("Formatter ac", cell, row);
-        /*if(row.address.hasOwnProperty(cell)){
-            return <span>{row.address[cell]}</span>;
-        }
-        else {
-            return "...";
-        }*/
-        return  cell + row.address;
     }
 
     render() {
@@ -140,21 +96,7 @@ export default class ErrorList extends React.Component {
                         </div>
                     );
                 } else if (this.state.responseType === "messageList") {
-
-                    errorList = "<table>";
-                    
-                    this.state.errorList.data.map(function(err){
-                        errorList = errorList + "<tr key='" + err.messageId + "'>";
-                        for(var prop in err){
-                            if(err.hasOwnProperty(prop)){
-                                errorList = errorList + "<td>" + err[prop] + "</td>";
-                            }
-                        }
-                        errorList = errorList + "</tr>";
-                    });
-
-                    errorList = errorList + "</table>";
-                    /*errorList = this.state.errorList.data.map((errorItem, i) =>
+                    errorList = this.state.errorList.data.map((errorItem, i) =>
                         <div key={errorItem.message_id}>
                             <MessageBody    errorType={errorItem.message_type} 
                                             exceptionMessage={errorItem.exception.message}
@@ -163,49 +105,7 @@ export default class ErrorList extends React.Component {
                                             key={errorItem.message_id} ></MessageBody>
                             <hr></hr>                            
                         </div>
-                    );/*
-                    /*var pulseUrl = this.state.address;
-                    var dataContext = [];
-                    var additionalCell = [];
-                    console.log("FilterValue Table: ", this.state.filterValue);
-                    if(this.state.filterValue) {
-                        this.state.filterValue.map(function(filter){
-                            console.log("Filtervalue: ", filter);
-                            additionalCell.push(
-                                <TableHeaderColumn dataField="message_id" dataFormat={this.additionalCellFormatter} key={filter}>{filter}</TableHeaderColumn>
-                            );
-                        });
-                    }
-                    console.log("DataContext: ", additionalCell, pulseUrl, dataContext);
-                    this.state.errorList.data.map(function(errorItem){ 
-                        dataContext.push({
-                            message_id: errorItem.message_id,
-                            message_type: errorItem.message_type,
-                            exception_message: errorItem.exception.message,
-                            address: pulseUrl
-                        });
-                    });
-                    console.log(dataContext);
-                    if(this.state.filterValue){
-                        errorList.push( 
-                            <BootstrapTable data={dataContext} striped={true} hover={true} exportCSV>
-                                <TableHeaderColumn dataField="message_id" isKey={true} >Message ID</TableHeaderColumn>
-                                <TableHeaderColumn dataField="message_type" dataAlign="left" >Message Type</TableHeaderColumn>
-                                <TableHeaderColumn dataField="exception_message" >Exception Message</TableHeaderColumn>
-                                <TableHeaderColumn dataField="address" dataFormat={this.messageBodyFormatter}>Message Body</TableHeaderColumn>
-                                {additionalCell}
-                            </BootstrapTable>
-                        );
-                    } else {
-                        errorList.push( 
-                            <BootstrapTable data={dataContext} striped={true} hover={true} exportCSV>
-                                <TableHeaderColumn dataField="message_id" isKey={true} >Message ID</TableHeaderColumn>
-                                <TableHeaderColumn dataField="message_type" dataAlign="left" >Message Type</TableHeaderColumn>
-                                <TableHeaderColumn dataField="exception_message" >Exception Message</TableHeaderColumn>
-                                <TableHeaderColumn dataField="address" dataFormat={this.messageBodyFormatter}>Message Body</TableHeaderColumn>
-                            </BootstrapTable>
-                        );
-                    }*/
+                    );
                     errorList.unshift(
                         <MessageBodyTemplateBar key="messageBodyTemplateBar" />
                     );
