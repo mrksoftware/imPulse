@@ -19,10 +19,11 @@ export default class Home extends React.Component {
   render() {
 
     const {pulseAddressValue} = this.state;
-
+    const { query } = this.props.location;
+    
     return (
       <div>
-        <PulseAddressBar pulseAddressValue={pulseAddressValue} />
+        <PulseAddressBar pulseAddressValue={pulseAddressValue} groupby={query.groupby}/>
         <ErrorList />
       </div>
     );

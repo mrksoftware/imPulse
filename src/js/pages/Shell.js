@@ -7,7 +7,7 @@ export default class Shell extends React.Component {
     super();
   }
 
-  render() {
+  render() {  
     return (
       <div>
         <nav className="navbar navbar-default">

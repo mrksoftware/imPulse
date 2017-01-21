@@ -8,13 +8,15 @@ export function updatePulseAddress(url) {
     });
 }
 
-export function downloadErrorGroupsList(url) {
+export function downloadErrorGroupsList(url, grouByMessageType) {
     dispatcher.dispatch({
         type: "FETCHING_ERROR_LIST",
         state: "Loading..."
     });
     //http://localhost:33333/api/recoverability/groups
-    const errorAPI = url + "/api/recoverability/groups"; 
+    var errorAPI = url + "/api/recoverability/groups"; 
+    if(grouByMessageType==="messagetype")
+        errorAPI = errorAPI + "/Message%20Type";
     axios(errorAPI).then((response) => {
         //console.log("Received: ", errorAPI, response);
        dispatcher.dispatch({
@@ -35,74 +37,11 @@ export function downloadErrorGroupsList(url) {
                     {
                         id: "123-789",
                         count: 24,
-                        title: "ArgumentNullException"
+                        title: errorAPI
                     }
                 ]
             },
             responseType: "groupList"
         });
     });
-}
-
-export function downloadErrorList(url, groupId) {
-    dispatcher.dispatch({
-        type: "FETCHING_ERROR_LIST",
-        state: "Loading..."
-    });
-    //http://localhost:33333/api/recoverability/groups
-    const errorAPI = url + "/api/recoverability/groups/" + groupId + "/errors?sort=time_of_failure&status=unresolved"; 
-    axios(errorAPI).then((response) => {
-        //console.log("Received: ", response);
-       dispatcher.dispatch({
-            type: "DOWNLOADED_ERROR_LIST",
-            response: response,
-            responseType: "messageList",
-            selectedGroupId: groupId
-        }); 
-    }).catch((err) => {
-        //TODO
-    });
-}
-
-//http://localhost:33333/api/messages/7837a55c-0dc5-4a0e-b913-a6d300a7cbbc/body
-export function downloadMessageBodyList(url, messageIds) {
-    dispatcher.dispatch({
-        type: "FETCHING_ERROR_LIST",
-        state: "Loading..."
-    });
-    var messageBodyList = [];
-    messageIds.map(function(messageId){
-        const errorAPI = url + "/api/messages/" + messageId + "/body"; 
-        axios(errorAPI).then((response) => {
-            //console.log("Received body List: ", response);
-            messageBodyList.push(response.data);
-        }).catch((err) => {
-            //TODO
-        });
-    });
-    dispatcher.dispatch({
-        type: "DOWNLOADED_MESSAGE_BODY_LIST",
-        response: messageBodyList,
-        responseType: "messageBodyList"
-    });
-    
-}
-
-export function fakeDownloadErrorList(url) {
-    dispatcher.dispatch({
-        type: "FETCHING_ERROR_LIST",
-        state: "Loading..."
-    });
-    setTimeout(()=>{
-        dispatcher.dispatch({
-            type: "DOWNLOADED_ERROR_LIST",
-            response: [
-                {errorMessage: "ArgumentNullException: idArticle"},
-                {errorMessage: "ArgumentNullException: idOrder"},
-                {errorMessage: "ArgumentException: idArticle is wrong"},
-                {errorMessage: "GenericException: idOrder"}
-            ],
-            status: "Loaded"
-        });
-    }, 5000);
 }
