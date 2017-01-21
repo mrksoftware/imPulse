@@ -23,7 +23,24 @@ export function downloadErrorGroupsList(url) {
             responseType: "groupList"
         }); 
     }).catch((err) => {
-        //TODO
+        dispatcher.dispatch({
+            type: "DOWNLOADED_ERROR_LIST",
+            response: {
+                data: [
+                    {
+                        id: "123-456",
+                        count: 50,
+                        title: "InvalidOperationException"
+                    },
+                    {
+                        id: "123-789",
+                        count: 24,
+                        title: "ArgumentNullException"
+                    }
+                ]
+            },
+            responseType: "groupList"
+        });
     });
 }
 

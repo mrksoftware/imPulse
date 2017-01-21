@@ -28,8 +28,8 @@ export default class PulseAddressBar extends React.Component {
   render() {
     return (
       <div>
-        <label for="usr">Address</label>
         <div class="input-group">
+            <span class="input-group-addon">Address</span>
             <input type="text" class="form-control" id="address" value={this.state.address} onChange={this.changeAddress.bind(this)} />
             <span class="input-group-btn">
               <button id="btnSubmit" class="btn btn-primary" type="button" onClick={this.downloadErrorGroupsList.bind(this)}>Search</button>
