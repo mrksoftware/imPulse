@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Link } from "react-router";
+import NavLink from "../components/NavLink";
 
 export default class Shell extends React.Component {
   constructor() {
@@ -13,17 +13,18 @@ export default class Shell extends React.Component {
         <nav className="navbar navbar-default">
             <div className="container-fluid">
                 <div className="navbar-header">
-                    <Link className="navbar-brand" to="#">imPulse</Link>
+                    <NavLink className="navbar-brand" to="#">imPulse</NavLink>
                 </div>
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul className="nav navbar-nav">
-                        <li><Link to="errorlist">Error Groups<span className="sr-only">(current)</span></Link></li>
-                        <li><Link to="messageslist">Group Messages</Link></li>
+                        <li><NavLink to="/errorlist">Error Groups</NavLink></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        {this.props.children}
+        <div className="containerCustom">
+          {this.props.children}
+        </div>
       </div>
     );
 

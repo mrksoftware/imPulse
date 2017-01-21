@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import ErrorListView from "./pages/ErrorListView";
+import ErrorMessagesView from "./pages/ErrorMessagesView";
 import Home from "./pages/Home";
 import Shell from "./pages/Shell";
 
@@ -12,7 +12,7 @@ ReactDOM.render(
     <Router history={hashHistory}>
         <Route path="/" component={Shell}>
             <IndexRoute component={Home}></IndexRoute>
-            <Route path="errorlist" component={ErrorListView}></Route>
+            <Route path="errorlist" component={ErrorMessagesView}></Route>
         </Route>
     </Router>,
 app);

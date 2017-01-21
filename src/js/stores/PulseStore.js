@@ -5,7 +5,7 @@ import dispatcher from "../dispatcher";
 class PulseStore extends EventEmitter {
     constructor() {
         super()
-        this.pulseAddressValue = {url: "http://localhost:33333"};
+        this.pulseAddressValue = "http://localhost:33333";
         this.errorList = null;
         this.responseType = null;
         this.selectedGroupId = null;
@@ -31,7 +31,7 @@ class PulseStore extends EventEmitter {
         //console.log(action);
         switch(action.type) {
             case "UPDATE_PULSE_ADDRESS": {
-                this.pulseAddressValue = {url: action.url};
+                this.pulseAddressValue =  action.url;
                 this.emit("pulseAddressUpdated");
             }
             case "FETCHING_ERROR_LIST": {

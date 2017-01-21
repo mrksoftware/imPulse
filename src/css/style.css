@@ -1,5 +1,8 @@
 body {
   background-color: #ecf0f1;
+}
+
+.containerCustom {
   margin-left: 12px;
   margin-right: 12px; 
 }
@@ -13,8 +16,15 @@ hr {
   min-width: 80px;
 }
 
+.navbar-default .navbar-nav > li > a.active {
+  background-color: #34495e;
+  color: white;
+}
+
 .input-group-addon {
-  min-width: 50px;
+  min-width: 100px;
+  background-color:#16a085;
+  color: white;
 }
 
 .horizontalStackPanel {
@@ -31,3 +41,49 @@ hr {
   margin-top: 12px;
   margin-bottom: 12px;
 }
+
+.errorListTitleBar {
+  display:flex;
+  align-items:center;
+  width:100%;
+  min-height:40px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  border-bottom-color:#95a5a6;
+  border-bottom-width: 2px;
+  border-bottom-style: inset;
+}
+
+.errorListTitleBar .horizontalStackPanel {
+  color: #2c3e50;
+  min-width: 75px;
+  font-weight: 400;
+}
+
+.rightInFlex {
+  margin-left: auto;
+}
+
+
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tbody:nth-child(even){background-color: #e1e1e1}
+
+th {
+    background-color: #34495e;
+    color: white;
+}
+
+
+
+

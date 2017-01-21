@@ -11,9 +11,6 @@ export default class MessageBody extends React.Component {
         	url: null,
             messageId: -1,
             messageBody: {data: "..."},
-			errorType: "",
-			exceptionMessage: "",
-			filterValue: []
         }
     }
 
@@ -27,8 +24,6 @@ export default class MessageBody extends React.Component {
     	this.setState({
 			messageId: this.props.messageId,
 			url: this.props.url,
-			errorType: this.props.errorType,
-			exceptionMessage: this.props.exceptionMessage
 		});
 		//console.log("Firing action: downloadMessageBodyAsync", this.props.messageId);
     	this.downloadMessageBodyAsync(this.props.url, this.props.messageId);
@@ -59,18 +54,8 @@ export default class MessageBody extends React.Component {
 
 	getFormattedMessage(messageBody, filterValue) {
 		var result = "";
-		result = result + this.state.errorType + "|"; //Add errorType
-		result = result + this.state.exceptionMessage + "|"; //add exceptionMessage
-		if(filterValue) {
-			//console.log("Apply filter: ", filterValue);
-			filterValue.map(function(filter){
-				if(messageBody.hasOwnProperty(filter))
-					result = result + messageBody[filter] + "|"; //add idOrdineProduzione
-			});
-		}
-		result = result + JSON.stringify(messageBody); //add messageBody
+		result = JSON.stringify(messageBody); //add messageBody
 		//console.log("If result: ", filterValue, filterValue.lenght, filterValue.lenght > 0);
-		
 		return result;
 	}
 

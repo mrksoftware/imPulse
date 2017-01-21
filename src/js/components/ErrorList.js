@@ -1,11 +1,11 @@
 import React from "react";
 
 import MessageBody from "./MessageBody"
-import MessageBodyTemplateBar from "./MessageBodyTemplateBar"
 
 import * as PulseActions from "../actions/PulseActions";
 import PulseStore from "../stores/PulseStore";
 
+import { Link } from "react-router";
 
 export default class ErrorList extends React.Component {
     constructor() {
@@ -18,25 +18,11 @@ export default class ErrorList extends React.Component {
         }
     }
 
-    detailButtonClick(event) {
-        //console.log("detailButtonCLick: ", this.state.address, event.target, event.target.attributes[1].value);
-        PulseActions.downloadErrorList(this.state.address, event.target.id);
-    }
-
-    printButtonClick(event) {
-        //console.log("printButtonClick", this.state.errorList);
-        var messageIds = [];
-        this.state.errorList.data.map(function(errorItem){
-            messageIds.push(errorItem.message_id);
-        });
-        PulseActions.downloadMessageBodyList(this.state.address,messageIds);
-    }
-
     componentWillMount() {
         PulseStore.on("pulseAddressUpdated", () => {
             //console.log("pulseAddressUpdated catched")
             this.setState({
-                address: PulseStore.getPulseAddress().url
+                address: PulseStore.getPulseAddress()
             });
         });
 
@@ -47,36 +33,21 @@ export default class ErrorList extends React.Component {
         PulseStore.on("errorListDownloaded", () => {
             //console.log("errorListDownloaded catched")
             this.setState({
-                address: PulseStore.getPulseAddress().url,
+                address: PulseStore.getPulseAddress(),
                 errorList: PulseStore.getErrorList(),
                 responseType: PulseStore.getRepsonseType(),
                 selectedGroupId: PulseStore.getSelectedGroupId()
             });
         });
-
-        PulseStore.on("messageBodyListDownloaded", () => {
-            var errorList = PulseStore.getErrorList();
-            if(errorList !== undefined) {
-                //console.log("messageBodyListDownloaded catched")
-                //console.log("Message Body list: ", PulseStore.getErrorList());
-
-                var text = [];
-                PulseStore.getErrorList().map(function(body){
-                    text.push(body);
-                });
-                //console.log(text);
-
-                this.setState({
-                    address: PulseStore.getPulseAddress().url,
-                    errorList: text,
-                    responseType: "downloadLink"
-                });
-            }
-        });
     }
 
     componentDidMount() {
-        this.setState({address: PulseStore.getPulseAddress().url});
+        this.setState({
+            address: PulseStore.getPulseAddress(),
+            errorList: PulseStore.getErrorList(),
+            responseType: PulseStore.getRepsonseType(),
+            selectedGroupId: PulseStore.getSelectedGroupId()
+        });
     }
 
     render() {
@@ -91,23 +62,24 @@ export default class ErrorList extends React.Component {
                             <span class="input-group-addon">{errorItem.count}</span>
                             <input id="title" type="text" class="form-control" value={errorItem.title} disabled></input>
                             <span class="input-group-btn">
-                                <button class="btn btn-success" type="button" id={errorItem.id} onClick={this.detailButtonClick.bind(this)}>Details</button>
+                                <Link to={"errorlist?group_id=" + errorItem.id}>
+                                    <button class="btn btn-success" type="button" id={errorItem.id}>Details</button>
+                                </Link>
                             </span>
                         </div>
                     );
-                } else if (this.state.responseType === "messageList") {
-                    errorList = this.state.errorList.data.map((errorItem, i) =>
-                        <div key={errorItem.message_id}>
-                            <MessageBody    errorType={errorItem.message_type} 
-                                            exceptionMessage={errorItem.exception.message}
-                                            messageId={errorItem.message_id} 
-                                            url={this.state.address}
-                                            key={errorItem.message_id} ></MessageBody>
-                            <hr></hr>                            
-                        </div>
-                    );
                     errorList.unshift(
-                        <MessageBodyTemplateBar key="messageBodyTemplateBar" />
+                        <div key="legendBar" class="errorListTitleBar">
+                            <h4 class="horizontalStackPanel" key="handlerNameLegend">Count</h4>
+                            <h4 class="horizontalStackPanel" key="exceptionMessageLegend">Title</h4>
+                        <div class="rightInFlex">
+                                <span>Group by </span>
+                                <div class="btn-group">
+                                    <button class="btn btn-info btn-small active">Exception Type</button>
+                                    <button class="btn btn-info btn-small">Handler Name</button>
+                                </div>    
+                            </div>
+                        </div>
                     );
                 } 
             }
@@ -115,11 +87,8 @@ export default class ErrorList extends React.Component {
 
         return (
         <div>
-            <label for="usr">{this.state.address}</label>
-            <div>
-                <div class="errorList">
-                    {errorList}
-                </div>
+            <div class="errorList">
+                {errorList}
             </div>
         </div>
         );

@@ -12,7 +12,16 @@ export function downloadMessageBodyAsync(url, messageId) {
 	        messageBody: response
 	    }); 
 	}).catch((err) => {
-	    //TODO
+	    dispatcher.dispatch({
+	        type: "DOWNLOAD_MESSAGE_BODY_ASYNC",
+	        messageId: messageId,
+	        messageBody: {
+				data: {
+					id: 2,
+					idArticle: 3
+				}	
+			}
+	    }); 
 	});
 }
 

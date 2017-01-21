@@ -1,7 +1,10 @@
 import React from "react";
 
+//components
+import ErrorList from "../components/ErrorList";
 import PulseAddressBar from "../components/PulseAddressBar";
 
+//stores
 import PulseStore from "../stores/PulseStore";
 
 export default class Home extends React.Component {
@@ -19,7 +22,8 @@ export default class Home extends React.Component {
 
     return (
       <div>
-        <PulseAddressBar pulseAddressValue={pulseAddressValue.url} />
+        <PulseAddressBar pulseAddressValue={pulseAddressValue} />
+        <ErrorList />
       </div>
     );
   }
