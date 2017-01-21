@@ -68,7 +68,7 @@ export default class MessageList extends React.Component {
                         <tr>
                             <td>{message.message_type}</td>
                             <td>{message.exception.message}</td>
-                            <td><MessageBody messageId={message.message_id}></MessageBody></td>
+                <td><MessageBody messageId={message.message_id} url={PulseStore.getPulseAddress()}></MessageBody></td>
                         </tr>
                     </tbody>
                 )

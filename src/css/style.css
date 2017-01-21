@@ -84,6 +84,15 @@ th {
     color: white;
 }
 
+.filterButton {
+  background-color: #3498db;
+  height: 20px;
+  color:white;
+}
 
-
+.filterButton.active {
+  background-color: #2980b9;
+  height: 20px;
+  color:white;
+}
 

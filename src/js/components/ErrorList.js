@@ -5,6 +5,7 @@ import MessageBody from "./MessageBody"
 import * as PulseActions from "../actions/PulseActions";
 import PulseStore from "../stores/PulseStore";
 
+import NavLink from "../components/NavLink";
 import { Link } from "react-router";
 
 export default class ErrorList extends React.Component {
@@ -75,8 +76,8 @@ export default class ErrorList extends React.Component {
                         <div class="rightInFlex">
                                 <span>Group by </span>
                                 <div class="btn-group">
-                                    <button class="btn btn-info btn-small active">Exception Type</button>
-                                    <button class="btn btn-info btn-small">Handler Name</button>
+                                    <NavLink class="btn btn-primary" to="?groupby=exceptiontype">Exception Type</NavLink>
+                                    <NavLink class="btn btn-primary" to="?groupby=messagetype">Handler Name</NavLink>
                                 </div>    
                             </div>
                         </div>
