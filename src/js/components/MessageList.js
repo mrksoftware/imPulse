@@ -38,6 +38,17 @@ export default class MessageList extends React.Component {
                 data: data
             });
         });
+
+        /* Qui arriva il messageBody, andare ad aggiungerlo nello stato della pagina
+        MessageBodyStore.on("messageBodyDidDownload", () => {
+	        //console.log("messageBodyDidDownload catched")
+			if(this.state.messageId === MessageBodyStore.getMessageId()){
+				this.setState({
+					messageBody: MessageBodyStore.getMessageBody(),
+					messageId: MessageBodyStore.getMessageId()
+				});
+			}
+	    });*/
     }
 
     componentDidMount() {
@@ -68,7 +79,7 @@ export default class MessageList extends React.Component {
                         <tr>
                             <td>{message.message_type}</td>
                             <td>{message.exception.message}</td>
-                <td><MessageBody messageId={message.message_id} url={PulseStore.getPulseAddress()}></MessageBody></td>
+                            <td><MessageBody messageId={message.message_id} url={PulseStore.getPulseAddress()}></MessageBody></td>
                         </tr>
                     </tbody>
                 )
