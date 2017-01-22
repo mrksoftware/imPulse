@@ -77,7 +77,7 @@ export default class ErrorList extends React.Component {
                                 <span>Group by </span>
                                 <div class="btn-group">
                                     <NavLink class="btn btn-primary" to="/impulse?groupby=exceptiontype">Exception Type</NavLink>
-                                    <NavLink class="btn btn-primary" to="/impulse?groupby=messagetype">Handler Name</NavLink>
+                                    <NavLink class="btn btn-primary" to="/impulse?groupby=messagetype">Message Type</NavLink>
                                 </div>    
                             </div>
                         </div>

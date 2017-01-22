@@ -10,7 +10,7 @@ import { Router, Route, IndexRoute, browserHistory } from "react-router";
 const app = document.getElementById("app");
 ReactDOM.render(
     <Router history={browserHistory}>
-        <Route path="/impulse/" component={Shell}>
+        <Route path="/impulse" component={Shell}>
             <IndexRoute component={Home}></IndexRoute>
             <Route path="/impulse/errorlist" component={ErrorMessagesView}></Route>
         </Route>

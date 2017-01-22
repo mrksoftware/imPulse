@@ -13,7 +13,7 @@ export default class Shell extends React.Component {
         <nav className="navbar navbar-default">
             <div className="container-fluid">
                 <div className="navbar-header">
-                    <NavLink className="navbar-brand" to="/impulse/">imPulse</NavLink>
+                    <NavLink className="navbar-brand" to="/impulse?groupby=messagetype">imPulse</NavLink>
                 </div>
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul className="nav navbar-nav">
