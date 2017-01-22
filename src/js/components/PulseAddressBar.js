@@ -39,7 +39,7 @@ export default class PulseAddressBar extends React.Component {
 
   downloadErrorGroupsList(groupBy){
     console.log(groupBy);
-    browserHistory.push("?groupby=" + groupBy);
+    browserHistory.push("/impulse?groupby=" + groupBy);
     PulseActions.downloadErrorGroupsList(this.state.address, groupBy);
   }
 

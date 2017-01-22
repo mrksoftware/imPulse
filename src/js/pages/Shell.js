@@ -13,11 +13,11 @@ export default class Shell extends React.Component {
         <nav className="navbar navbar-default">
             <div className="container-fluid">
                 <div className="navbar-header">
-                    <NavLink className="navbar-brand" to="#">imPulse</NavLink>
+                    <NavLink className="navbar-brand" to="/impulse/">imPulse</NavLink>
                 </div>
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul className="nav navbar-nav">
-                        <li><NavLink to="/errorlist">Error Groups</NavLink></li>
+                        <li><NavLink to="/impulse/errorlist">Error Groups</NavLink></li>
                     </ul>
                 </div>
             </div>

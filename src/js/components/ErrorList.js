@@ -63,7 +63,7 @@ export default class ErrorList extends React.Component {
                             <span class="input-group-addon">{errorItem.count}</span>
                             <input id="title" type="text" class="form-control" value={errorItem.title} disabled></input>
                             <span class="input-group-btn">
-                                <Link to={"errorlist?group_id=" + errorItem.id}>
+                                <Link to={"/impulse/errorlist?group_id=" + errorItem.id}>
                                     <button class="btn btn-success" type="button" id={errorItem.id}>Details</button>
                                 </Link>
                             </span>
@@ -76,8 +76,8 @@ export default class ErrorList extends React.Component {
                         <div class="rightInFlex">
                                 <span>Group by </span>
                                 <div class="btn-group">
-                                    <NavLink class="btn btn-primary" to="?groupby=exceptiontype">Exception Type</NavLink>
-                                    <NavLink class="btn btn-primary" to="?groupby=messagetype">Handler Name</NavLink>
+                                    <NavLink class="btn btn-primary" to="/impulse?groupby=exceptiontype">Exception Type</NavLink>
+                                    <NavLink class="btn btn-primary" to="/impulse?groupby=messagetype">Handler Name</NavLink>
                                 </div>    
                             </div>
                         </div>
