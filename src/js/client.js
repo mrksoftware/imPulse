@@ -7,7 +7,7 @@ import Shell from "./pages/Shell";
 
 import { Router, Route, IndexRoute, browserHistory } from "react-router";
 
-var root = global.isDebug ? "/impulse" : "/";
+var root = global.isDebug ? "/impulse/" : "/";
 const app = document.getElementById("app");
 ReactDOM.render(
     <Router history={browserHistory}>
