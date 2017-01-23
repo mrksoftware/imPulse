@@ -27,7 +27,6 @@ export default class ErrorMessagesView extends React.Component {
   render() {
     return (
       <div>
-        <h4>Showing messages from group id: {this.state.groupId}</h4>
         <MessageList groupId={this.state.groupId}></MessageList>
       </div>
     );

@@ -1,4 +1,5 @@
 import React from "react";
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 import * as MessageListActions from "../actions/MessageListActions";
 import MessageListStore from "../stores/MessageListStore";
@@ -10,7 +11,9 @@ export default class MessageList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            copied: false
+        }
     }
 
     componentWillReceiveProps(newProps) {
@@ -42,14 +45,14 @@ export default class MessageList extends React.Component {
 	        //console.log("messageBodyDidDownload catched")
             var tempData = this.state.data;
 			if(tempData){
-                console.log("Before", tempData);
+                //console.log("Before", tempData);
                 this.state.data.map(function(message){
                     if(message.message_id === MessageListStore.getMessageId()) {
-                        console.log("MessageBody", JSON.stringify(MessageListStore.getMessageBody().data));
+                        //console.log("MessageBody", JSON.stringify(MessageListStore.getMessageBody().data));
                         message.messageBody = MessageListStore.getMessageBody().data;
                     }
                 });
-                console.log("After", tempData);
+                //console.log("After", tempData);
                 this.setState({
                     data: tempData
                 })
@@ -74,10 +77,10 @@ export default class MessageList extends React.Component {
     }
 
     getMessageBody(message) {
-        console.log(message);
+        //console.log(message);
         if(message.hasOwnProperty("messageBody")){
             var res = JSON.stringify(message.messageBody);
-            console.log("ER", res);
+            //console.log("ER", res);
             return res;
         } else {
             MessageListActions.downloadMessageBodyAsync(PulseStore.getPulseAddress(), message.message_id);
@@ -85,11 +88,48 @@ export default class MessageList extends React.Component {
         }
     }
 
+    getJsonAttributeSeparatedByTab(messageBody) {
+        var result = "";
+        //console.log(messageBody);
+        for(var attr in messageBody) {
+            result = result + "\t" + attr;
+        }
+        return result;
+    }
+
+    getJsonObjectSeparatedByTab(messageBody) {
+        var result = "";
+        //console.log(messageBody);
+        for(var attr in messageBody) {
+            result = result + "\t" + messageBody[attr];
+        }
+        return result;
+    }
+
+    getFormattedDataTable() {
+        var context = this;
+        var result = "";
+        var tempData = this.state.data;
+        if(tempData){
+            tempData.map(function(message, i){
+                if(message){
+                    if(i==0){
+                        result = "Message Type\tException Message" + context.getJsonAttributeSeparatedByTab(message.messageBody) + "\r\n";
+                    }
+                    result = result + message.message_type + "\t" + message.exception.message + context.getJsonObjectSeparatedByTab(message.messageBody) + "\r\n";
+                }
+            });
+        }
+        return result;
+    }
+
     render() {
         //console.log("render with state: ", this.state)
         var context = this;
+        var copyButton = "";
         var elements = [];
         const { data } = this.state;
+        var showCopyButton = false;
         if(data){
             //console.log("Render", data);
             data.map(function(message,index){
@@ -105,21 +145,35 @@ export default class MessageList extends React.Component {
                     )    
                 }
                 //console.log(context.getMessageBody(message));
+                const formattedMessageBody = context.getMessageBody(message);
                 elements.push(
                     <tbody key={message.message_id}>
                         <tr>
                             <td>{message.message_type}</td>
                             <td>{message.exception.message}</td>
-                            <td>{context.getMessageBody(message)}</td>
+                            <td>{formattedMessageBody}</td>
                         </tr>
                     </tbody>
                 )
+                showCopyButton = (formattedMessageBody && formattedMessageBody !== "......");
             });
+
+            if(showCopyButton) {
+                copyButton = (
+                    <div class="transparentInnerDiv">
+                        <h4>List</h4>
+                        <CopyToClipboard text={this.getFormattedDataTable()} onCopy={() => this.setState({copied:true})}>
+                            <button class="btn btn-success rightInFlex">{this.state.copied?"Copied!":"Copy to clipboard"}</button>
+                        </CopyToClipboard>
+                    </div>
+                );
+            }
         }
         //console.log("Ren", this.props);
         return (
             <div>
                 <div class="errorList">
+                    {copyButton}
                     <table>
                         {elements}
                     </table>

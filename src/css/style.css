@@ -17,7 +17,7 @@ hr {
 }
 
 .navbar-default .navbar-nav > li > a.active {
-  background-color: #34495e;
+  background-color: #275880;
   color: white;
 }
 
@@ -40,6 +40,12 @@ hr {
   min-height:40px;
   margin-top: 12px;
   margin-bottom: 12px;
+}
+
+.transparentInnerDiv {
+  display:flex;
+  align-items:center;
+  width:100%;
 }
 
 .errorListTitleBar {
@@ -97,3 +103,34 @@ th {
   color:white;
 }
 
+.copyButton {
+  margin-bottom: 12px;
+  float: right;
+}
+
+.navbar-default {
+  background-color: #38719c;
+  border-color: #38719c;
+  border-bottom-color: #275880;
+  border-bottom-width: 5px;
+  border-bottom-style: inset;
+  border-radius: 0px;
+}
+
+.navbar-default .navbar-brand {
+  color:white;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: white;
+  background-color: #407fb0;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: white;
+  background-color: #407fb0;
+}
