@@ -4,7 +4,7 @@ import MessageBody from "./MessageBody"
 
 import * as PulseActions from "../actions/PulseActions";
 import PulseStore from "../stores/PulseStore";
-
+import Global from "../global";
 import NavLink from "../components/NavLink";
 import { Link } from "react-router";
 import { browserHistory } from 'react-router'
@@ -22,7 +22,8 @@ export default class ErrorList extends React.Component {
 
     onDetailClick(event) {
         var id = event.target.id;
-        browserHistory.push("/impulse/errorlist?group_id=" + id);
+        console.log(Global.root + "/errorlist?group_id=" + id);
+        browserHistory.push(Global.root + "/errorlist?group_id=" + id);
     }
 
     componentWillMount() {
@@ -80,8 +81,8 @@ export default class ErrorList extends React.Component {
                         <div class="rightInFlex">
                                 <span>Group by </span>
                                 <div class="btn-group">
-                                    <NavLink class="btn btn-primary" to="/impulse?groupby=exceptiontype">Exception Type</NavLink>
-                                    <NavLink class="btn btn-primary" to="/impulse?groupby=messagetype">Message Type</NavLink>
+                                    <NavLink class="btn btn-primary" to={Global.root + "?groupby=exceptiontype"}>Exception Type</NavLink>
+                                    <NavLink class="btn btn-primary" to={Global.root + "?groupby=messagetype"}>Message Type</NavLink>
                                 </div>    
                             </div>
                         </div>

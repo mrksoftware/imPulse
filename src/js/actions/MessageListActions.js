@@ -53,3 +53,26 @@ export function downloadMessageListAsync(url, groupId){
         });
     });
 }
+
+/*export function downloadMessageBodyAsync(url, messageId) {
+	var uri = url + "/api/messages/" + messageId + "/body"; 
+	axios(uri).then((response) => {
+	    //console.log("Received body (id, response): ", messageId, response);
+	   dispatcher.dispatch({
+	        type: "DOWNLOAD_MESSAGE_BODY_ASYNC",
+	        messageId: messageId,
+	        messageBody: response
+	    }); 
+	}).catch((err) => {
+	    dispatcher.dispatch({
+	        type: "DOWNLOAD_MESSAGE_BODY_ASYNC",
+	        messageId: messageId,
+	        messageBody: {
+				data: {
+					id: 2,
+					idArticle: 3
+				}	
+			}
+	    }); 
+	});
+}*/

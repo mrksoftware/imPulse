@@ -1,6 +1,7 @@
 import React from "react";
 
 import NavLink from "../components/NavLink";
+import Global from "../global";
 
 export default class Shell extends React.Component {
   constructor() {
@@ -8,16 +9,17 @@ export default class Shell extends React.Component {
   }
 
   render() {  
+    
     return (
       <div>
         <nav className="navbar navbar-default">
             <div className="container-fluid">
                 <div className="navbar-header">
-                    <NavLink className="navbar-brand" to="/impulse?groupby=messagetype">imPulse</NavLink>
+                    <NavLink className="navbar-brand" to={Global.root + "?groupby=messagetype"}>imPulse</NavLink>
                 </div>
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul className="nav navbar-nav">
-                        <li><NavLink to="/impulse/errorlist">Error Groups</NavLink></li>
+                        <li><NavLink to={Global.root + "/errorlist"}>Error Groups</NavLink></li>
                     </ul>
                 </div>
             </div>

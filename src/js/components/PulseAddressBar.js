@@ -2,7 +2,7 @@ import React from "react";
 
 import * as PulseActions from "../actions/PulseActions";
 import PulseStore from "../stores/PulseStore";
-
+import Global from "../global";
 import { browserHistory } from 'react-router'
 
 export default class PulseAddressBar extends React.Component {
@@ -39,7 +39,7 @@ export default class PulseAddressBar extends React.Component {
 
   downloadErrorGroupsList(groupBy){
     console.log(groupBy);
-    browserHistory.push("/impulse?groupby=" + groupBy);
+    browserHistory.push(Global.root + "?groupby=" + groupBy);
     PulseActions.downloadErrorGroupsList(this.state.address, groupBy);
   }
 
