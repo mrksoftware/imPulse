@@ -3,7 +3,6 @@ import React from "react";
 import * as MessageListActions from "../actions/MessageListActions";
 import MessageListStore from "../stores/MessageListStore";
 import PulseStore from "../stores/PulseStore";
-import MessageBody from "./MessageBody";
 
 import { Link } from "react-router";
 
@@ -15,7 +14,7 @@ export default class MessageList extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        console.log("New", newProps, this.props);
+        //console.log("New", newProps, this.props);
         this.props = newProps;
         const { groupId } = this.props;
         this.loadMessagesWillStart(groupId);
@@ -24,20 +23,38 @@ export default class MessageList extends React.Component {
     loadMessagesWillStart(groupId) {
         if(groupId) {
             const url = PulseStore.getPulseAddress();
-            console.log(url ,groupId);
+            //console.log(url ,groupId);
             MessageListActions.downloadMessageListAsync(url ,groupId);
         }
     }
 
     componentWillMount() {
-        console.log("Will", this.props);
+        //console.log("Will", this.props);
         MessageListStore.on("messageListDidDownload", () => {
-            console.log("fetchingErrorList catched", MessageListStore.getData());
+            //console.log("fetchingErrorList catched", MessageListStore.getData());
             const { data } = MessageListStore.getData();
             this.setState({
                 data: data
             });
         });
+
+        MessageListStore.on("messageBodyDidDownload", () => {
+	        //console.log("messageBodyDidDownload catched")
+            var tempData = this.state.data;
+			if(tempData){
+                console.log("Before", tempData);
+                this.state.data.map(function(message){
+                    if(message.message_id === MessageListStore.getMessageId()) {
+                        console.log("MessageBody", JSON.stringify(MessageListStore.getMessageBody().data));
+                        message.messageBody = MessageListStore.getMessageBody().data;
+                    }
+                });
+                console.log("After", tempData);
+                this.setState({
+                    data: tempData
+                })
+            }
+	    });
 
         /* Qui arriva il messageBody, andare ad aggiungerlo nello stato della pagina
         MessageBodyStore.on("messageBodyDidDownload", () => {
@@ -52,16 +69,29 @@ export default class MessageList extends React.Component {
     }
 
     componentDidMount() {
-        console.log("Did", this.props);
+        //console.log("Did", this.props);
         
+    }
+
+    getMessageBody(message) {
+        console.log(message);
+        if(message.hasOwnProperty("messageBody")){
+            var res = JSON.stringify(message.messageBody);
+            console.log("ER", res);
+            return res;
+        } else {
+            MessageListActions.downloadMessageBodyAsync(PulseStore.getPulseAddress(), message.message_id);
+            return "......";
+        }
     }
 
     render() {
         //console.log("render with state: ", this.state)
+        var context = this;
         var elements = [];
         const { data } = this.state;
         if(data){
-            console.log("Render", data);
+            //console.log("Render", data);
             data.map(function(message,index){
                 if(index==0){
                     elements.push(
@@ -74,18 +104,19 @@ export default class MessageList extends React.Component {
                         </tbody>
                     )    
                 }
+                //console.log(context.getMessageBody(message));
                 elements.push(
                     <tbody key={message.message_id}>
                         <tr>
                             <td>{message.message_type}</td>
                             <td>{message.exception.message}</td>
-                            <td><MessageBody messageId={message.message_id} url={PulseStore.getPulseAddress()}></MessageBody></td>
+                            <td>{context.getMessageBody(message)}</td>
                         </tr>
                     </tbody>
                 )
             });
         }
-        console.log("Ren", this.props);
+        //console.log("Ren", this.props);
         return (
             <div>
                 <div class="errorList">

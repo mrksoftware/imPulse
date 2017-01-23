@@ -8,6 +8,8 @@ class MessageListStore extends EventEmitter {
 		super();
 		this.groupId = null;
 		this.data = null;
+		this.messageId = null;
+		this.messageBody = null;
 	}
 
 	getgroupId() {
@@ -18,6 +20,14 @@ class MessageListStore extends EventEmitter {
 		return this.data;
 	}
 
+	getMessageId() {
+		return this.messageId;
+	}
+
+	getMessageBody() {
+		return this.messageBody;
+	}
+
 	handleActions(action) {
     	//console.log(action);
 
@@ -25,6 +35,11 @@ class MessageListStore extends EventEmitter {
             case "DOWNLOADED_MESSAGE_LIST": {
                 this.data =  action.response;
                 this.emit("messageListDidDownload");
+            }
+			case "DOWNLOAD_MESSAGE_BODY_ASYNC": {
+                this.messageId = action.messageId;
+                this.messageBody = action.messageBody;
+                this.emit("messageBodyDidDownload");
             }
         }
 	}

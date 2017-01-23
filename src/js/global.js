@@ -1,7 +1,7 @@
 
 class Global {
     constructor() {
-        this.isDebug = false;
+        this.isDebug = true;
         this.root = this.isDebug ? "": "/impulse";
     }
 }
