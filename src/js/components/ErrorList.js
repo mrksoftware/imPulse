@@ -7,6 +7,7 @@ import PulseStore from "../stores/PulseStore";
 
 import NavLink from "../components/NavLink";
 import { Link } from "react-router";
+import { browserHistory } from 'react-router'
 
 export default class ErrorList extends React.Component {
     constructor() {
@@ -17,6 +18,11 @@ export default class ErrorList extends React.Component {
             responseType: null,
             selectedGroupId: null
         }
+    }
+
+    onDetailClick(event) {
+        var id = event.target.id;
+        browserHistory.push("/impulse/errorlist?group_id=" + id);
     }
 
     componentWillMount() {
@@ -63,7 +69,7 @@ export default class ErrorList extends React.Component {
                             <span class="input-group-addon">{errorItem.count}</span>
                             <input id="title" type="text" class="form-control" value={errorItem.title} disabled></input>
                             <span class="input-group-btn">
-                                <Link class="btn btn-success" to={"/impulse/errorlist?group_id=" + errorItem.id}></Link>
+                                <button class="btn btn-success" onClick={this.onDetailClick().bind(this)} type="button" id={errorItem.id}>Details</button>
                             </span>
                         </div>
                     );
