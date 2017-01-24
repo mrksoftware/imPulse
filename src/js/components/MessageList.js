@@ -92,7 +92,7 @@ export default class MessageList extends React.Component {
         var result = "";
         //console.log(messageBody);
         for(var attr in messageBody) {
-            result = result + "\t" + attr;
+            result = result + "\t" + attr.replace("\r"," ").replace("\n", " ");
         }
         return result;
     }
@@ -101,7 +101,7 @@ export default class MessageList extends React.Component {
         var result = "";
         //console.log(messageBody);
         for(var attr in messageBody) {
-            result = result + "\t" + messageBody[attr];
+            result = result + "\t" + messageBody[attr].replace("\r"," ").replace("\n", " ");
         }
         return result;
     }
@@ -116,7 +116,7 @@ export default class MessageList extends React.Component {
                     if(i==0){
                         result = "Message Type\tException Message" + context.getJsonAttributeSeparatedByTab(message.messageBody) + "\r";
                     }
-                    result = result + message.message_type + "\t" + message.exception.message + context.getJsonObjectSeparatedByTab(message.messageBody) + "\r";
+                    result = result + message.message_type.replace("\r"," ").replace("\n", " ") + "\t" + message.exception.message.replace("\r"," ").replace("\n", " ") + context.getJsonObjectSeparatedByTab(message.messageBody) + "\r";
                 }
             });
         }
