@@ -15,7 +15,7 @@ export default class Shell extends React.Component {
         <nav className="navbar navbar-default">
             <div className="container-fluid">
                 <div className="navbar-header">
-                    <NavLink className="navbar-brand" to={Global.root + "?groupby=messagetype"}>imPulse</NavLink>
+                    <NavLink className="navbar-brand" to={Global.root + "/home?groupby=messagetype"}>imPulse</NavLink>
                 </div>
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul className="nav navbar-nav">

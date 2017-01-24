@@ -20,7 +20,7 @@ export default class ErrorList extends React.Component {
 
     onDetailClick(event) {
         var id = event.target.id;
-        console.log(Global.root + "/errorlist?group_id=" + id);
+        //console.log(Global.root + "/errorlist?group_id=" + id);
         browserHistory.push(Global.root + "/errorlist?group_id=" + id);
     }
 
@@ -79,8 +79,8 @@ export default class ErrorList extends React.Component {
                         <div class="rightInFlex">
                                 <span>Group by </span>
                                 <div class="btn-group">
-                                    <NavLink class="btn btn-primary" to={Global.root + "?groupby=exceptiontype"}>Exception Type</NavLink>
-                                    <NavLink class="btn btn-primary" to={Global.root + "?groupby=messagetype"}>Message Type</NavLink>
+                                    <NavLink class="btn btn-primary" to={Global.root + "home?groupby=exceptiontype"}>Exception Type</NavLink>
+                                    <NavLink class="btn btn-primary" to={Global.root + "home?groupby=messagetype"}>Message Type</NavLink>
                                 </div>    
                             </div>
                         </div>

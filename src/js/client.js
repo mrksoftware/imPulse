@@ -11,7 +11,7 @@ var root = global.isDebug ? "/impulse/" : "/";
 const app = document.getElementById("app");
 ReactDOM.render(
     <Router history={browserHistory}>
-        <Route path={root} component={Shell}>
+        <Route path={root + "/Home"} component={Shell}>
             <IndexRoute component={Home}></IndexRoute>
             <Route path={root + "errorlist"} component={ErrorMessagesView}></Route>
         </Route>
