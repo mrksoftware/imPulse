@@ -114,9 +114,9 @@ export default class MessageList extends React.Component {
             tempData.map(function(message, i){
                 if(message){
                     if(i==0){
-                        result = "Message Type\tException Message" + context.getJsonAttributeSeparatedByTab(message.messageBody) + "\r\n";
+                        result = "Message Type\tException Message" + context.getJsonAttributeSeparatedByTab(message.messageBody) + "\r";
                     }
-                    result = result + message.message_type + "\t" + message.exception.message + context.getJsonObjectSeparatedByTab(message.messageBody) + "\r\n";
+                    result = result + message.message_type + "\t" + message.exception.message + context.getJsonObjectSeparatedByTab(message.messageBody) + "\r";
                 }
             });
         }
