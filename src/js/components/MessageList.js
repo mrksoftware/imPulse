@@ -92,7 +92,7 @@ export default class MessageList extends React.Component {
         var result = "";
         //console.log(messageBody);
         for(var attr in messageBody) {
-            result = result + "\t" + attr.replace("\r"," ").replace("\n", " ");
+            result = result + "\t" + attr;
         }
         return result;
     }
@@ -101,7 +101,7 @@ export default class MessageList extends React.Component {
         var result = "";
         //console.log(messageBody);
         for(var attr in messageBody) {
-            result = result + "\t" + messageBody[attr].replace("\r"," ").replace("\n", " ");
+            result = result + "\t" + messageBody[attr];
         }
         return result;
     }
