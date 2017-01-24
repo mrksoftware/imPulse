@@ -21,7 +21,7 @@ export default class ErrorList extends React.Component {
     onDetailClick(event) {
         var id = event.target.id;
         //console.log(Global.root + "/errorlist?group_id=" + id);
-        browserHistory.push("impulse/errorlist?group_id=" + id);
+        browserHistory.push("/impulse/errorlist?group_id=" + id);
     }
 
     componentWillMount() {
@@ -79,8 +79,8 @@ export default class ErrorList extends React.Component {
                         <div class="rightInFlex">
                                 <span>Group by </span>
                                 <div class="btn-group">
-                                    <NavLink class="btn btn-primary" to={"impulse?groupby=exceptiontype"}>Exception Type</NavLink>
-                                    <NavLink class="btn btn-primary" to={"impulse?groupby=messagetype"}>Message Type</NavLink>
+                                    <NavLink class="btn btn-primary" to={"/impulse?groupby=exceptiontype"}>Exception Type</NavLink>
+                                    <NavLink class="btn btn-primary" to={"/impulse?groupby=messagetype"}>Message Type</NavLink>
                                 </div>    
                             </div>
                         </div>
