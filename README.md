@@ -1,13 +1,12 @@
 # imPulse 
-### built on top of the ServiceInsight API by Particular
+### built on top of the ServiceControl API by Particular
 
 [![Stories in Ready](https://badge.waffle.io/mrksoftware/impulse.png?label=ready&title=Stories in Ready)](https://waffle.io/mrksoftware/impulse)
 
 ## Functionalities
 * Get error groups
-* Get unresolved messages by error group including message body (each parameter is separated by a '|')
-  * Add fiters to the filter bar (separated by a comma) in order to include different properties in the output
-  * It is possibile to copy and paste the output into excel (excel will split all the properties in cells automatically)
+* Get unresolved messages by error group including message body
+  * It is possibile to copy and paste the output into excel
   
 ## Getting started
 * Download code
