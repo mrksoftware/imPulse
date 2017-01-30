@@ -6,7 +6,7 @@
 ## Functionalities
 * Get error groups
 * Get unresolved messages by error group including message body
-  * It is possibile to copy and paste the output into excel
+  * It is possible to copy and paste the output into excel
   
 ## Getting started
 * Download code
