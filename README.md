@@ -7,6 +7,7 @@
 * Get error groups
 * Get unresolved messages by error group/message type including message body 
   * It is possibile to copy and paste the output into excel 
+
   
 ## Getting started
 * Download code
