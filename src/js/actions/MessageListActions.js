@@ -1,9 +1,9 @@
 import dispatcher from "../dispatcher";
 import axios from "axios";
 
-export function downloadMessageListAsync(url, groupId){
+export function downloadMessageListAsync(url, groupId, pageNumber){
     //http://localhost:33333/api/recoverability/groups
-    const errorAPI = url + "/api/recoverability/groups/" + groupId + "/errors?sort=time_of_failure&status=unresolved"; 
+    const errorAPI = url + "/api/recoverability/groups/" + groupId + "/errors?sort=time_of_failure&status=unresolved&page=" + pageNumber; 
     axios(errorAPI).then((response) => {
         //console.log("Received: ", response);
        dispatcher.dispatch({

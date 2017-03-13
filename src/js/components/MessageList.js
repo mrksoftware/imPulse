@@ -28,7 +28,7 @@ export default class MessageList extends React.Component {
         if(groupId) {
             const url = PulseStore.getPulseAddress();
             //console.log(url ,groupId);
-            MessageListActions.downloadMessageListAsync(url ,groupId);
+            MessageListActions.downloadMessageListAsync(url ,groupId,1);
         }
     }
 
