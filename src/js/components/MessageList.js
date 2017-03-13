@@ -4,6 +4,7 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import * as MessageListActions from "../actions/MessageListActions";
 import MessageListStore from "../stores/MessageListStore";
 import PulseStore from "../stores/PulseStore";
+import LoadMoreBar from "./LoadMoreBar";
 
 import { Link } from "react-router";
 
@@ -127,6 +128,7 @@ export default class MessageList extends React.Component {
         //console.log("render with state: ", this.state)
         var context = this;
         var copyButton = "";
+        var loadMoreBar = "";
         var elements = [];
         const { data } = this.state;
         var showCopyButton = false;
@@ -167,6 +169,9 @@ export default class MessageList extends React.Component {
                         </CopyToClipboard>
                     </div>
                 );
+                loadMoreBar = (
+                    <LoadMoreBar groupId={this.props.groupId}></LoadMoreBar>
+                );
             }
         }
         //console.log("Ren", this.props);
@@ -177,6 +182,7 @@ export default class MessageList extends React.Component {
                     <table>
                         {elements}
                     </table>
+                    {loadMoreBar}
                 </div>
             </div>
         );
